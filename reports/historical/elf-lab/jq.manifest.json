@@ -1,0 +1,49 @@
+{
+  "schema": "elf-echo-lab/v1",
+  "source": {
+    "format": "ELF64-x86-64",
+    "type": "ET_EXEC",
+    "entry": "0x403a50",
+    "interpreter": null,
+    "load_segments": 4,
+    "sections": 26,
+    "has_symtab": false,
+    "sha256": "b1c22172dd303f3be49e935aa56aa48a8b7a46e0bc838b4997d3bb451495870f",
+    "bytes": 2267912,
+    "path": "<workspace>/jq"
+  },
+  "result": {
+    "format": "ELF64-x86-64",
+    "type": "ET_EXEC",
+    "entry": "0x62e2a0",
+    "interpreter": null,
+    "load_segments": 5,
+    "sections": 27,
+    "has_symtab": false,
+    "sha256": "ea0fda79d62b3118c296905b294da487aec19cae86a213a0c989345080036e27",
+    "bytes": 2272440,
+    "path": "<workspace>/output/elf-lab/jq"
+  },
+  "behavior": {
+    "service": "single-client TCP echo",
+    "bind": "127.0.0.1",
+    "default_port": 18080,
+    "port_environment": "ELF_ECHO_PORT",
+    "exit_after_client_eof": true,
+    "original_entry_executed": false
+  },
+  "payload_sha256": "c24aeee4fe1608dd438ccc6239ecf80c50f387f80e3a3ac4f89b21d2b25eb95c",
+  "limitations": [
+    "Linux x86-64 only; original dynamic dependencies still required",
+    "loader initialization may run before the new entry",
+    "original build-id is retained; use SHA-256 to identify the result"
+  ],
+  "verification": {
+    "passed": true,
+    "original_bytes_after_header_preserved": true,
+    "original_load_mappings_preserved": true,
+    "original_sections_preserved_except_name_table": true,
+    "source_sha256": "b1c22172dd303f3be49e935aa56aa48a8b7a46e0bc838b4997d3bb451495870f",
+    "result_sha256": "ea0fda79d62b3118c296905b294da487aec19cae86a213a0c989345080036e27"
+  }
+}

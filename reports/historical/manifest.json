@@ -1,0 +1,27 @@
+{
+  "input_sha256": "b1c22172dd303f3be49e935aa56aa48a8b7a46e0bc838b4997d3bb451495870f",
+  "recovered_function_ranges": 2615,
+  "variants": [
+    {
+      "variant": 1,
+      "file": "socket-client",
+      "entry": "0x403a50",
+      "symbols": 2627,
+      "sha256": "d03191d99fd552e6d4116e06ffe8a8c8a3bb545e6e415befeea7ae911be14cfe"
+    },
+    {
+      "variant": 2,
+      "file": "socket-server",
+      "entry": "0x403a50",
+      "symbols": 2637,
+      "sha256": "41017c48872c523438c46ec22c2a372a116cd451e42f4185c78a395a4d7a9d6f"
+    },
+    {
+      "variant": 3,
+      "file": "socket-router",
+      "entry": "0x3ff098",
+      "symbols": 2641,
+      "sha256": "3e62808567cef7476459e7257cfb4327f9b5637bf1340442b2d2dbdbe7bfc2b2"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "version": "curl 8.22.0 (x86_64-pc-linux-gnu) libcurl/8.22.0 OpenSSL/3.0.13 zlib/1.3",
+  "source_url": "https://curl.se/download/curl-8.22.0.tar.xz",
+  "source_archive_sha256": "f7ef3ae8a22e521f289803fe93543eb64c329b58aa73a9e224dfd915a2a5f4f7",
+  "binary_sha256": "e33f5bbef50c44488ab06636d8064654001f75220c7f438c278d08f9ef43f19b",
+  "symtab_entries": 13659,
+  "defined_function_symbols": 12148,
+  "debug_info": true,
+  "stripped": false,
+  "libcurl_linkage": "static; complete archive also supplied as libcurl.a",
+  "other_libraries": "dynamic OpenSSL, zlib, libc; their full symbols are not bundled",
+  "file_transfer_test_passed": true,
+  "https_head_test": {
+    "url": "https://curl.se/",
+    "status": 200,
+    "certificate_verification": true
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "old_prefix": "<workspace>",
+  "new_prefix": "/opt/build/curl-debug-tree",
+  "changes": [
+    {
+      "section": ".debug_line_str",
+      "replacements": 4
+    }
+  ],
+  "before_sha256": "dfc19d22f1cc028a856a3df0d8088360bd9a16a002ed235a4361705f88a64104",
+  "sha256": "efb2847cb8a28ef214742f1592903bd34292fa5dbdabd7bc20196a6d106c9c33",
+  "all_load_segments_unchanged": true,
+  "symbol_table_unchanged": true
+}

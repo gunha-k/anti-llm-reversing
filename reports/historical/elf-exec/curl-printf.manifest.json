@@ -1,0 +1,55 @@
+{
+  "schema": "elf-exec-lab/v1",
+  "source": {
+    "format": "ELF64-x86-64",
+    "type": "ET_DYN",
+    "entry": "0x16e60",
+    "interpreter": "/lib64/ld-linux-x86-64.so.2",
+    "load_segments": 4,
+    "sections": 40,
+    "has_symtab": true,
+    "sha256": "e33f5bbef50c44488ab06636d8064654001f75220c7f438c278d08f9ef43f19b",
+    "bytes": 7281304,
+    "path": "<workspace>/output/curl-symbols/curl"
+  },
+  "result": {
+    "format": "ELF64-x86-64",
+    "type": "ET_DYN",
+    "entry": "0x1f42e0",
+    "interpreter": null,
+    "load_segments": 5,
+    "sections": 41,
+    "has_symtab": true,
+    "sha256": "06f68cbf8cf6cbd4d7469a3c824454ebf0dada664319cbaebe0d06580de9ff49",
+    "bytes": 7286600,
+    "path": "<workspace>/output/elf-exec/curl-printf"
+  },
+  "behavior": {
+    "operation": "execve",
+    "argv0": "/usr/bin/printf",
+    "remaining_arguments": "forwarded unchanged",
+    "environment_cwd_stdio_fds": "inherited",
+    "exit_status_and_signals": "execution target replaces the launcher process",
+    "original_host_entry_executed": false,
+    "host_interpreter_executed": false
+  },
+  "payload_sha256": "18cdb4125d78603ae135a1104ed48a6fa344871d12dac30308498976bd195a3c",
+  "limitations": [
+    "execution target must remain at its recorded absolute path",
+    "process identity after execve is the actual execution target",
+    "original host build-id is retained; identify result by SHA-256"
+  ],
+  "execution_target": {
+    "path": "/usr/bin/printf",
+    "sha256_at_build": "e6b0e5cee964f1bbee2111700cabb1b1c9d15821b062f197dd8efa2993d202ab",
+    "storage": "external-original-file"
+  },
+  "verification": {
+    "passed": true,
+    "original_bytes_after_header_preserved": true,
+    "original_load_mappings_preserved": true,
+    "original_sections_preserved_except_name_table": true,
+    "source_sha256": "e33f5bbef50c44488ab06636d8064654001f75220c7f438c278d08f9ef43f19b",
+    "result_sha256": "06f68cbf8cf6cbd4d7469a3c824454ebf0dada664319cbaebe0d06580de9ff49"
+  }
+}

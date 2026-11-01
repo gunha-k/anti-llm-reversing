@@ -1,0 +1,20 @@
+[
+  {
+    "file": "socket-client",
+    "behavior_cases_passed": 21,
+    "socket_first_in_symbol_and_address_order": true,
+    "original_load_bytes_preserved_except_elf_header": true
+  },
+  {
+    "file": "socket-server",
+    "behavior_cases_passed": 21,
+    "socket_first_in_symbol_and_address_order": true,
+    "original_load_bytes_preserved_except_elf_header": true
+  },
+  {
+    "file": "socket-router",
+    "behavior_cases_passed": 21,
+    "socket_first_in_symbol_and_address_order": true,
+    "original_load_bytes_preserved_except_elf_header": true
+  }
+]

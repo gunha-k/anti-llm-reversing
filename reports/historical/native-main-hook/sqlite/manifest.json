@@ -1,0 +1,107 @@
+{
+  "schema": "native-main-hook/v1",
+  "host": "sqlite",
+  "version": "3.50.4",
+  "source_url": "https://www.sqlite.org/2025/sqlite-autoconf-3500400.tar.gz",
+  "archive_sha256": "a3db587a1b92ee5ddac2f66b3edb41b26f9c867275782d46c3a088977d6a5b18",
+  "binary": "<workspace>/output/native-main-hook/sqlite/sqlite3",
+  "sha256": "bf37f79242e828e266d841e3b2eaaa4202b84949397b3a089991cf9aeaf13d09",
+  "original_sha256": "8fd6c31224ec1efc05964b0824195a07d4b9c6dd447ab3c101250f7ec5597936",
+  "original_version_output": [
+    "3.50.4 2025-07-30 19:33:53 4d8adfb30e03f9cf27f800a2c1ba3c48fb4ca1b08b0f5ed59a4d5ecbf45e20a3 (64-bit)"
+  ],
+  "main_arity": 2,
+  "macro": "NATIVE_MAIN_DISPATCH",
+  "call_path": [
+    "main",
+    "main_init",
+    "native_hook_real_main",
+    "exit(payload_return_code)"
+  ],
+  "payloads": [
+    {
+      "path": "<workspace>/examples/main_hook/echo.c",
+      "sha256": "e5796652628053804dc0500f6228b952f55329678c4ec46e682a0abe17da36de"
+    }
+  ],
+  "compiler_flags": [
+    "-O0",
+    "-g3",
+    "-fno-inline",
+    "-fno-omit-frame-pointer",
+    "-fno-lto"
+  ],
+  "payload_cflags": [],
+  "payload_ldflags": [],
+  "verification": {
+    "first_main_call": "main_init",
+    "transfer_calls": [
+      "native_hook_real_main",
+      "exit@plt"
+    ],
+    "no_exec_or_subprocess_in_transfer": true,
+    "original_public_symbols_preserved": true,
+    "original_public_symbol_count": 334,
+    "final_public_symbol_count": 337,
+    "host_markers": [
+      "sqlite3_open",
+      "sqlite3_step",
+      "sqlite3_prepare_v2"
+    ],
+    "symtab_and_debug_info": true
+  },
+  "build_recipe": {
+    "cwd": "<workspace>/output/native-main-hook/sqlite/work/sqlite-autoconf-3500400",
+    "link": [
+      "gcc",
+      "-O0",
+      "-g3",
+      "-fno-inline",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-Wl,--no-gc-sections",
+      "-o",
+      "sqlite3",
+      "shell.o",
+      "sqlite3.o",
+      "-lm",
+      "-ldl",
+      "-lpthread"
+    ],
+    "recompile": [
+      "gcc",
+      "-O0",
+      "-g3",
+      "-fno-inline",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-c",
+      "shell.c",
+      "-o",
+      "shell.o"
+    ],
+    "hook_build": [
+      "gcc",
+      "-O0",
+      "-g3",
+      "-fno-inline",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-Wl,--no-gc-sections",
+      "-o",
+      "sqlite3",
+      "shell.o",
+      "sqlite3.o",
+      "-lm",
+      "-ldl",
+      "-lpthread",
+      "<workspace>/output/native-main-hook/sqlite/payload/program.o"
+    ]
+  },
+  "limitations": [
+    "ELF/shared-library constructors still run before main",
+    "argv[0] and executable-relative resources refer to the combined file",
+    "relinking changes function addresses and main machine code",
+    "native C ABI only; input archives are included with --whole-archive"
+  ]
+}

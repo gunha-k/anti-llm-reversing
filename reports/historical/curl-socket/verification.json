@@ -1,0 +1,27 @@
+{
+  "sha256": "efb2847cb8a28ef214742f1592903bd34292fa5dbdabd7bc20196a6d106c9c33",
+  "invalid_port_cases": 4,
+  "bind_failure_exit": true,
+  "echo_tests": [
+    {
+      "bytes": 13,
+      "echo_matches": true,
+      "exited_zero_after_eof": true,
+      "curl_version_not_executed": true
+    },
+    {
+      "bytes": 10,
+      "echo_matches": true,
+      "exited_zero_after_eof": true,
+      "curl_version_not_executed": true
+    },
+    {
+      "bytes": 131072,
+      "echo_matches": true,
+      "exited_zero_after_eof": true,
+      "curl_version_not_executed": true
+    }
+  ],
+  "behavior_test_sha256_before_debug_path_edit": "dfc19d22f1cc028a856a3df0d8088360bd9a16a002ed235a4361705f88a64104",
+  "debug_path_edit_only_load_segments_unchanged": true
+}

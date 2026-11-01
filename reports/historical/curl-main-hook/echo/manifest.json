@@ -1,0 +1,36 @@
+{
+  "schema": "curl-main-hook/v1",
+  "curl_tree": "<workspace>/build/curl-symbols/curl-8.22.0",
+  "output": "<workspace>/output/curl-main-hook/echo/curl",
+  "sha256": "114024e025e961e618db5c5e29004e5b3214d128742e39aecb526ca12b9d0baa",
+  "main_arity": 2,
+  "payloads": [
+    {
+      "path": "<workspace>/examples/main_hook/echo.c",
+      "sha256": "e5796652628053804dc0500f6228b952f55329678c4ec46e682a0abe17da36de"
+    }
+  ],
+  "call_path": [
+    "main",
+    "tool_init_stderr",
+    "curl_hook_real_main",
+    "exit(payload_return_code)"
+  ],
+  "macro": "CURL_DISPATCH_REAL_MAIN",
+  "first_main_call_verified": true,
+  "hook_calls": [
+    "curl_hook_real_main",
+    "exit@plt"
+  ],
+  "new_process_or_exec_in_hook": false,
+  "original_curl_tree_unchanged": true,
+  "original_object_symbols_preserved": true,
+  "payload_compiler_flags": [],
+  "payload_linker_flags": [],
+  "limitations": [
+    "relinking changes addresses; original main bytes are not identical",
+    "ELF constructors run before main; shared dependencies still initialize",
+    "argv[0], /proc/self/exe, and executable-relative resources identify the combined file",
+    "matching native C ABI and declared main arity required"
+  ]
+}

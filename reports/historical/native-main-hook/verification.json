@@ -1,0 +1,181 @@
+{
+  "schema": "native-main-hook-verification/v1",
+  "hosts": [
+    {
+      "host": "sqlite",
+      "binary": "<workspace>/output/native-main-hook/sqlite/sqlite3",
+      "sha256": "bf37f79242e828e266d841e3b2eaaa4202b84949397b3a089991cf9aeaf13d09",
+      "structure": {
+        "first_main_call": "main_init",
+        "transfer_calls": [
+          "native_hook_real_main",
+          "exit@plt"
+        ],
+        "no_exec_or_subprocess_in_transfer": true,
+        "original_public_symbols_preserved": true,
+        "original_public_symbol_count": 334,
+        "final_public_symbol_count": 337,
+        "host_markers": [
+          "sqlite3_open",
+          "sqlite3_step",
+          "sqlite3_prepare_v2"
+        ],
+        "symtab_and_debug_info": true
+      },
+      "invalid_port_cases_passed": 6,
+      "network": {
+        "status": "passed",
+        "echo_cases": [
+          {
+            "echo_bytes": 0,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          },
+          {
+            "echo_bytes": 6,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          },
+          {
+            "echo_bytes": 10,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          },
+          {
+            "echo_bytes": 131072,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          }
+        ],
+        "termination": {
+          "sigterm_exit": -15,
+          "same_executable": true,
+          "no_children": true
+        },
+        "bind_conflict_passed": true
+      }
+    },
+    {
+      "host": "vim",
+      "binary": "<workspace>/output/native-main-hook/vim/vim",
+      "sha256": "1feff41571554d20f5caa99e71841516dce76f8a6abe7d5f2ce958fb1c4345a6",
+      "structure": {
+        "first_main_call": "mch_early_init",
+        "transfer_calls": [
+          "native_hook_real_main",
+          "exit@plt"
+        ],
+        "no_exec_or_subprocess_in_transfer": true,
+        "original_public_symbols_preserved": true,
+        "original_public_symbol_count": 6358,
+        "final_public_symbol_count": 6361,
+        "host_markers": [
+          "do_cmdline",
+          "main_loop",
+          "mch_call_shell"
+        ],
+        "symtab_and_debug_info": true
+      },
+      "invalid_port_cases_passed": 6,
+      "network": {
+        "status": "passed",
+        "echo_cases": [
+          {
+            "echo_bytes": 0,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          },
+          {
+            "echo_bytes": 6,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          },
+          {
+            "echo_bytes": 10,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          },
+          {
+            "echo_bytes": 131072,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          }
+        ],
+        "termination": {
+          "sigterm_exit": -15,
+          "same_executable": true,
+          "no_children": true
+        },
+        "bind_conflict_passed": true
+      }
+    },
+    {
+      "host": "git",
+      "binary": "<workspace>/output/native-main-hook/git/git",
+      "sha256": "dbfe4a9971c9205bbd96ee8b3a9c80a73769250c7192aa2880763016a37ec78a",
+      "structure": {
+        "first_main_call": "init_git",
+        "transfer_calls": [
+          "native_hook_real_main",
+          "exit@plt"
+        ],
+        "no_exec_or_subprocess_in_transfer": true,
+        "original_public_symbols_preserved": true,
+        "original_public_symbol_count": 3202,
+        "final_public_symbol_count": 3205,
+        "host_markers": [
+          "cmd_main",
+          "cmd_log",
+          "cmd_commit",
+          "start_command"
+        ],
+        "symtab_and_debug_info": true
+      },
+      "invalid_port_cases_passed": 6,
+      "network": {
+        "status": "passed",
+        "echo_cases": [
+          {
+            "echo_bytes": 0,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          },
+          {
+            "echo_bytes": 6,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          },
+          {
+            "echo_bytes": 10,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          },
+          {
+            "echo_bytes": 131072,
+            "exit_code": 0,
+            "same_executable": true,
+            "no_children": true
+          }
+        ],
+        "termination": {
+          "sigterm_exit": -15,
+          "same_executable": true,
+          "no_children": true
+        },
+        "bind_conflict_passed": true
+      }
+    }
+  ],
+  "scope": "provided echo sample; no claim of full upstream project test coverage"
+}

@@ -1,0 +1,1472 @@
+{
+  "source": "socket-router",
+  "output": "socket-gateway",
+  "source_sha256": "3e62808567cef7476459e7257cfb4327f9b5637bf1340442b2d2dbdbe7bfc2b2",
+  "output_sha256": "c8746183c38dbe0acea0ef8dd1dc024cf537a34af252532ee83c0c2806d68ac9",
+  "changed_string_runs": 291,
+  "changed_bytes": 554,
+  "behavior_cases_passed": 23,
+  "code_and_elf_layout_unchanged": true,
+  "compatibility_changes": [
+    "help/version/error text",
+    "JQ_* environment names become NC_*",
+    "jq module paths become nc module paths"
+  ],
+  "changes": [
+    {
+      "offset": "0x150048",
+      "before": "Use jq --help for help with command-line options,\n",
+      "after": "Use nc --help for help with command-line options,\n"
+    },
+    {
+      "offset": "0x150080",
+      "before": "or see the jq manpage, or online docs at https://jqlang.org\n",
+      "after": "or see the nc manpage, or online docs at https://socket.org\n"
+    },
+    {
+      "offset": "0x150100",
+      "before": "jq: error (at %s) (not a string): %s\n",
+      "after": "nc: error (at %s) (not a string): %s\n"
+    },
+    {
+      "offset": "0x150128",
+      "before": "jq: invalid JSON text passed to --jsonargs\n",
+      "after": "nc: invalid JSON text passed to --jsonargs\n"
+    },
+    {
+      "offset": "0x150198",
+      "before": "jq: --indent takes one parameter\n",
+      "after": "nc: --indent takes one parameter\n"
+    },
+    {
+      "offset": "0x1501c0",
+      "before": "jq: --indent takes a number between -1 and 7\n",
+      "after": "nc: --indent takes a number between -1 and 7\n"
+    },
+    {
+      "offset": "0x1501f0",
+      "before": "jq: --arg takes two parameters (e.g. --arg varname value)\n",
+      "after": "nc: --arg takes two parameters (e.g. --arg varname value)\n"
+    },
+    {
+      "offset": "0x150230",
+      "before": "jq: --argjson takes two parameters (e.g. --argjson varname text)\n",
+      "after": "nc: --argjson takes two parameters (e.g. --argjson varname text)\n"
+    },
+    {
+      "offset": "0x150278",
+      "before": "jq: invalid JSON text passed to --argjson\n",
+      "after": "nc: invalid JSON text passed to --argjson\n"
+    },
+    {
+      "offset": "0x1502a8",
+      "before": "jq: --%s takes two parameters (e.g. --%s varname filename)\n",
+      "after": "nc: --%s takes two parameters (e.g. --%s varname filename)\n"
+    },
+    {
+      "offset": "0x1502e8",
+      "before": "jq: Bad JSON in --%s %s %s: %s\n",
+      "after": "nc: Bad JSON in --%s %s %s: %s\n"
+    },
+    {
+      "offset": "0x150308",
+      "before": "jq - commandline JSON processor [version %s]\n\nUsage:\tjq [options] <jq filter> [file...]\n\tjq [options] --args <jq filter> [strings...]\n\tjq [options] --jsonargs <jq filter> [JSON_TEXTS...]\n\njq is a tool for processing JSON inputs, applying the given filter to\nits JSON text inputs and producing the filter's results as JSON on\nstandard output.\n\nThe simplest filter is ., which copies jq's input to its output\nunmodified except for formatting. For more advanced filters see\nthe jq(1) manpage (\"man jq\") and/or https://jqlang.org/.\n\nExample:\n\n\t$ echo '{\"foo\": 0}' | jq .\n\t{\n\t  \"foo\": 0\n\t}\n\n",
+      "after": "nc - commandline TCP/IP handler [version %s]\n\nUsage:\tnc [options] <nc filter> [file...]\n\tnc [options] --args <nc filter> [strings...]\n\tnc [options] --jsonargs <nc filter> [JSON_TEXTS...]\n\nnc is a tool for processing JSON inputs, applying the given filter to\nits JSON text inputs and producing the filter's results as JSON on\nstandard output.\n\nThe simplest filter is ., which copies nc's input to its output\nunmodified except for formatting. For more advanced filters see\nthe nc(1) manpage (\"man nc\") and/or https://socket.org/.\n\nExample:\n\n\t$ echo '{\"foo\": 0}' | nc .\n\t{\n\t  \"foo\": 0\n\t}\n\n"
+    },
+    {
+      "offset": "0x150558",
+      "before": "Command options:\n  -n, --null-input          use `null` as the single input value;\n  -R, --raw-input           read each line as string instead of JSON;\n  -s, --slurp               read all inputs into an array and use it as\n                            the single input value;\n  -c, --compact-output      compact instead of pretty-printed output;\n  -r, --raw-output          output strings without escapes and quotes;\n      --raw-output0         implies -r and output NUL after each output;\n  -j, --join-output         implies -r and output without newline after\n                            each output;\n  -a, --ascii-output        output strings by only ASCII characters\n                            using escape sequences;\n  -S, --sort-keys           sort keys of each object on output;\n  -C, --color-output        colorize JSON output;\n  -M, --monochrome-output   disable colored output;\n      --tab                 use tabs for indentation;\n      --indent n            use n spaces for indentation (max 7 spaces);\n      --unbuffered          flush output stream after each output;\n      --stream              parse the input value in streaming fashion;\n      --stream-errors       implies --stream and report parse error as\n                            an array;\n      --seq                 parse input/output as application/json-seq;\n  -f, --from-file           load the filter from a file;\n  -L, --library-path dir    search modules from the directory;\n      --arg name value      set $name to the string value;\n      --argjson name value  set $name to the JSON value;\n      --slurpfile name file set $name to an array of JSON values read\n                            from the file;\n      --rawfile name file   set $name to string contents of file;\n      --args                consume remaining arguments as positional\n                            string values;\n      --jsonargs            consume remaining arguments as positional\n                            JSON values;\n  -e, --exit-status         set exit status code based on the output;\n  -V, --version             show the version;\n  --build-configuration     show jq's build configuration;\n  -h, --help                show the help;\n  --                        terminates argument processing;\n\nNamed arguments are also available as $ARGS.named[], while\npositional arguments are available as $ARGS.positional[].\n",
+      "after": "Command options:\n  -n, --null-input          use `null` as the single input value;\n  -R, --raw-input           read each line as string instead of JSON;\n  -s, --slurp               read all inputs into an array and use it as\n                            the single input value;\n  -c, --compact-output      compact instead of pretty-printed output;\n  -r, --raw-output          output strings without escapes and quotes;\n      --raw-output0         implies -r and output NUL after each output;\n  -j, --join-output         implies -r and output without newline after\n                            each output;\n  -a, --ascii-output        output strings by only ASCII characters\n                            using escape sequences;\n  -S, --sort-keys           sort keys of each object on output;\n  -C, --color-output        colorize JSON output;\n  -M, --monochrome-output   disable colored output;\n      --tab                 use tabs for indentation;\n      --indent n            use n spaces for indentation (max 7 spaces);\n      --unbuffered          flush output stream after each output;\n      --stream              parse the input value in streaming fashion;\n      --stream-errors       implies --stream and report parse error as\n                            an array;\n      --seq                 parse input/output as application/json-seq;\n  -f, --from-file           load the filter from a file;\n  -L, --library-path dir    search modules from the directory;\n      --arg name value      set $name to the string value;\n      --argjson name value  set $name to the JSON value;\n      --slurpfile name file set $name to an array of JSON values read\n                            from the file;\n      --rawfile name file   set $name to string contents of file;\n      --args                consume remaining arguments as positional\n                            string values;\n      --jsonargs            consume remaining arguments as positional\n                            JSON values;\n  -e, --exit-status         set exit status code based on the output;\n  -V, --version             show the version;\n  --build-configuration     show nc's build configuration;\n  -h, --help                show the help;\n  --                        terminates argument processing;\n\nNamed arguments are also available as $ARGS.named[], while\npositional arguments are available as $ARGS.positional[].\n"
+    },
+    {
+      "offset": "0x150f88",
+      "before": "For listing the command options, use jq --help.\n",
+      "after": "For listing the command options, use nc --help.\n"
+    },
+    {
+      "offset": "0x150fc0",
+      "before": "jq: program file contains NUL bytes\n",
+      "after": "nc: program file contains NUL bytes\n"
+    },
+    {
+      "offset": "0x150fe8",
+      "before": "jq: error: writing output failed: %s\n",
+      "after": "nc: error: writing output failed: %s\n"
+    },
+    {
+      "offset": "0x151078",
+      "before": "jq: error: cannot allocate memory\n",
+      "after": "nc: error: cannot allocate memory\n"
+    },
+    {
+      "offset": "0x1510f8",
+      "before": "jv_get_kind(jq->error) == JV_KIND_NULL",
+      "after": "sv_get_kind(nc->error) == SV_KIND_NULL"
+    },
+    {
+      "offset": "0x151120",
+      "before": "jv_get_kind(*var) == JV_KIND_ARRAY",
+      "after": "sv_get_kind(*var) == SV_KIND_ARRAY"
+    },
+    {
+      "offset": "0x151148",
+      "before": "jv_get_kind(objv) == JV_KIND_OBJECT",
+      "after": "sv_get_kind(obsv) == SV_KIND_OBJECT"
+    },
+    {
+      "offset": "0x151290",
+      "before": "jq->stk_top == frame_current(jq)->retdata",
+      "after": "nc->stk_top == frame_current(nc)->retdata"
+    },
+    {
+      "offset": "0x1512c0",
+      "before": "jv_get_kind(args) == JV_KIND_ARRAY || jv_get_kind(args) == JV_KIND_OBJECT",
+      "after": "sv_get_kind(args) == SV_KIND_ARRAY || sv_get_kind(args) == SV_KIND_OBJECT"
+    },
+    {
+      "offset": "0x151310",
+      "before": "jv_get_kind(args) == JV_KIND_ARRAY",
+      "after": "sv_get_kind(args) == SV_KIND_ARRAY"
+    },
+    {
+      "offset": "0x151338",
+      "before": "jv_get_kind(attrs) == JV_KIND_OBJECT",
+      "after": "sv_get_kind(attrs) == SV_KIND_OBJECT"
+    },
+    {
+      "offset": "0x151360",
+      "before": "jv_get_kind(v) == JV_KIND_INVALID",
+      "after": "sv_get_kind(v) == SV_KIND_INVALID"
+    },
+    {
+      "offset": "0x1513e0",
+      "before": "strcmp(jv_string_value(v), \"Expected separator between values at line 1, column 9 (while parsing '{\\\"a':\\\"12\\\"}')\") == 0",
+      "after": "strcmp(sv_string_value(v), \"Expected separator between values at line 1, column 9 (while parsing '{\\\"a':\\\"12\\\"}')\") == 0"
+    },
+    {
+      "offset": "0x151460",
+      "before": "jv_get_kind(a) == JV_KIND_ARRAY",
+      "after": "sv_get_kind(a) == SV_KIND_ARRAY"
+    },
+    {
+      "offset": "0x151480",
+      "before": "jv_array_length(jv_copy(a)) == 0",
+      "after": "sv_array_length(sv_copy(a)) == 0"
+    },
+    {
+      "offset": "0x1514a8",
+      "before": "jv_array_length(jv_copy(a)) == 1",
+      "after": "sv_array_length(sv_copy(a)) == 1"
+    },
+    {
+      "offset": "0x1514d0",
+      "before": "jv_number_value(jv_array_get(jv_copy(a), 0)) == 42",
+      "after": "sv_number_value(sv_array_get(sv_copy(a), 0)) == 42"
+    },
+    {
+      "offset": "0x151508",
+      "before": "jv_equal(jv_copy(a), jv_copy(a))",
+      "after": "sv_equal(sv_copy(a), sv_copy(a))"
+    },
+    {
+      "offset": "0x151530",
+      "before": "jv_equal(jv_copy(a2), jv_copy(a2))",
+      "after": "sv_equal(sv_copy(a2), sv_copy(a2))"
+    },
+    {
+      "offset": "0x151558",
+      "before": "jv_equal(jv_copy(a), jv_copy(a2))",
+      "after": "sv_equal(sv_copy(a), sv_copy(a2))"
+    },
+    {
+      "offset": "0x151580",
+      "before": "jv_equal(jv_copy(a2), jv_copy(a))",
+      "after": "sv_equal(sv_copy(a2), sv_copy(a))"
+    },
+    {
+      "offset": "0x1515a8",
+      "before": "!jv_equal(jv_copy(a), jv_copy(a2))",
+      "after": "!sv_equal(sv_copy(a), sv_copy(a2))"
+    },
+    {
+      "offset": "0x1515d0",
+      "before": "!jv_equal(jv_copy(a2), jv_copy(a))",
+      "after": "!sv_equal(sv_copy(a2), sv_copy(a))"
+    },
+    {
+      "offset": "0x1515f8",
+      "before": "jv_array_length(jv_copy(a)) == 2",
+      "after": "sv_array_length(sv_copy(a)) == 2"
+    },
+    {
+      "offset": "0x151620",
+      "before": "jv_get_kind(subarray) == JV_KIND_ARRAY",
+      "after": "sv_get_kind(subarray) == SV_KIND_ARRAY"
+    },
+    {
+      "offset": "0x151648",
+      "before": "jv_array_length(jv_copy(subarray)) == 1",
+      "after": "sv_array_length(sv_copy(subarray)) == 1"
+    },
+    {
+      "offset": "0x151670",
+      "before": "jv_number_value(jv_array_get(jv_copy(subarray), 0)) == 42",
+      "after": "sv_number_value(sv_array_get(sv_copy(subarray), 0)) == 42"
+    },
+    {
+      "offset": "0x1516b0",
+      "before": "jv_get_kind(sub2) == JV_KIND_ARRAY",
+      "after": "sv_get_kind(sub2) == SV_KIND_ARRAY"
+    },
+    {
+      "offset": "0x1516d8",
+      "before": "jv_array_length(jv_copy(sub2)) == 2",
+      "after": "sv_array_length(sv_copy(sub2)) == 2"
+    },
+    {
+      "offset": "0x151700",
+      "before": "jv_number_value(jv_array_get(jv_copy(sub2), 0)) == 42",
+      "after": "sv_number_value(sv_array_get(sv_copy(sub2), 0)) == 42"
+    },
+    {
+      "offset": "0x151738",
+      "before": "jv_number_value(jv_array_get(jv_copy(sub2), 1)) == 19",
+      "after": "sv_number_value(sv_array_get(sv_copy(sub2), 1)) == 19"
+    },
+    {
+      "offset": "0x151770",
+      "before": "jv_array_length(jv_copy(a3)) == 3",
+      "after": "sv_array_length(sv_copy(a3)) == 3"
+    },
+    {
+      "offset": "0x151798",
+      "before": "jv_number_value(jv_array_get(jv_copy(a3), 0)) == 42",
+      "after": "sv_number_value(sv_array_get(sv_copy(a3), 0)) == 42"
+    },
+    {
+      "offset": "0x1517d0",
+      "before": "jv_array_length(jv_array_get(jv_copy(a3), 1)) == 1",
+      "after": "sv_array_length(sv_array_get(sv_copy(a3), 1)) == 1"
+    },
+    {
+      "offset": "0x151808",
+      "before": "jv_number_value(jv_array_get(jv_copy(a3), 2)) == 19",
+      "after": "sv_number_value(sv_array_get(sv_copy(a3), 2)) == 19"
+    },
+    {
+      "offset": "0x151840",
+      "before": "jv_array_length(jv_copy(a4)) == 1",
+      "after": "sv_array_length(sv_copy(a4)) == 1"
+    },
+    {
+      "offset": "0x151868",
+      "before": "jv_array_length(jv_copy(a4)) == 2",
+      "after": "sv_array_length(sv_copy(a4)) == 2"
+    },
+    {
+      "offset": "0x151890",
+      "before": "jv_array_length(jv_copy(a5)) == 2",
+      "after": "sv_array_length(sv_copy(a5)) == 2"
+    },
+    {
+      "offset": "0x1518b8",
+      "before": "jv_array_length(jv_array_get(jv_copy(a), 1)) == 1",
+      "after": "sv_array_length(sv_array_get(sv_copy(a), 1)) == 1"
+    },
+    {
+      "offset": "0x1518f0",
+      "before": "jv_equal(jv_string(\"foo\"), jv_string_sized(\"foo\", 3))",
+      "after": "sv_equal(sv_string(\"foo\"), sv_string_sized(\"foo\", 3))"
+    },
+    {
+      "offset": "0x151928",
+      "before": "jv_string_length_bytes(jv_copy(shortstr)) == (int)strlen(nasty)",
+      "after": "sv_string_length_bytes(sv_copy(shortstr)) == (int)strlen(nasty)"
+    },
+    {
+      "offset": "0x151968",
+      "before": "jv_string_length_bytes(jv_copy(longstr)) == (int)sizeof(nasty)",
+      "after": "sv_string_length_bytes(sv_copy(longstr)) == (int)sizeof(nasty)"
+    },
+    {
+      "offset": "0x1519a8",
+      "before": "jv_equal(jv_copy(a1), jv_copy(a2))",
+      "after": "sv_equal(sv_copy(a1), sv_copy(a2))"
+    },
+    {
+      "offset": "0x1519d0",
+      "before": "jv_equal(jv_copy(a2), jv_copy(a1))",
+      "after": "sv_equal(sv_copy(a2), sv_copy(a1))"
+    },
+    {
+      "offset": "0x1519f8",
+      "before": "!jv_equal(jv_copy(a1), jv_copy(b))",
+      "after": "!sv_equal(sv_copy(a1), sv_copy(b))"
+    },
+    {
+      "offset": "0x151a20",
+      "before": "jv_string_hash(jv_copy(a1)) == jv_string_hash(jv_copy(a1))",
+      "after": "sv_string_hash(sv_copy(a1)) == sv_string_hash(sv_copy(a1))"
+    },
+    {
+      "offset": "0x151a60",
+      "before": "jv_string_hash(jv_copy(a1)) == jv_string_hash(jv_copy(a2))",
+      "after": "sv_string_hash(sv_copy(a1)) == sv_string_hash(sv_copy(a2))"
+    },
+    {
+      "offset": "0x151aa0",
+      "before": "jv_string_hash(jv_copy(b)) != jv_string_hash(jv_copy(a1))",
+      "after": "sv_string_hash(sv_copy(b)) != sv_string_hash(sv_copy(a1))"
+    },
+    {
+      "offset": "0x151ae0",
+      "before": "jv_equal(jv_string(\"hello42!\"), jv_string_fmt(\"hello%d%s\", 42, \"!\"))",
+      "after": "sv_equal(sv_string(\"hello42!\"), sv_string_fmt(\"hello%d%s\", 42, \"!\"))"
+    },
+    {
+      "offset": "0x151b28",
+      "before": "jv_string_length_bytes(jv_copy(str)) == sizeof(big) - 1",
+      "after": "sv_string_length_bytes(sv_copy(str)) == sizeof(big) - 1"
+    },
+    {
+      "offset": "0x151b60",
+      "before": "!strcmp(big, jv_string_value(str))",
+      "after": "!strcmp(big, sv_string_value(str))"
+    },
+    {
+      "offset": "0x151b88",
+      "before": "jv_number_value(jv_object_get(jv_copy(o1), jv_string(\"foo\"))) == 42",
+      "after": "sv_number_value(sv_object_get(sv_copy(o1), sv_string(\"foo\"))) == 42"
+    },
+    {
+      "offset": "0x151bd0",
+      "before": "jv_number_value(jv_object_get(jv_copy(o1), jv_string(\"bar\"))) == 24",
+      "after": "sv_number_value(sv_object_get(sv_copy(o1), sv_string(\"bar\"))) == 24"
+    },
+    {
+      "offset": "0x151c18",
+      "before": "jv_number_value(jv_object_get(jv_copy(o2), jv_string(\"foo\"))) == 420",
+      "after": "sv_number_value(sv_object_get(sv_copy(o2), sv_string(\"foo\"))) == 420"
+    },
+    {
+      "offset": "0x151c60",
+      "before": "jv_number_value(jv_object_get(jv_copy(o2), jv_string(\"bar\"))) == 240",
+      "after": "sv_number_value(sv_object_get(sv_copy(o2), sv_string(\"bar\"))) == 240"
+    },
+    {
+      "offset": "0x151fa0",
+      "before": "*** Expected error_message to be invalid after jq_start: %s\n",
+      "after": "*** Expected error_message to be invalid after nc_start: %s\n"
+    },
+    {
+      "offset": "0x151fe0",
+      "before": "*** Expected exit_code to be invalid after jq_start: %s\n",
+      "after": "*** Expected exit_code to be invalid after nc_start: %s\n"
+    },
+    {
+      "offset": "0x152020",
+      "before": "*** Expected jq to not be halted after jq_start: %s\n",
+      "after": "*** Expected nc to not be halted after nc_start: %s\n"
+    },
+    {
+      "offset": "0x152088",
+      "before": "Test jq_compile_args with array args",
+      "after": "Test nc_compile_args with array args"
+    },
+    {
+      "offset": "0x1520b0",
+      "before": "Test jq recompile on same state",
+      "after": "Test nc recompile on same state"
+    },
+    {
+      "offset": "0x1520f8",
+      "before": "JVP_HAS_KIND(a, JV_KIND_ARRAY)",
+      "after": "SVP_HAS_KIND(a, SV_KIND_ARRAY)"
+    },
+    {
+      "offset": "0x152118",
+      "before": "JVP_HAS_KIND(a, JV_KIND_STRING)",
+      "after": "SVP_HAS_KIND(a, SV_KIND_STRING)"
+    },
+    {
+      "offset": "0x152138",
+      "before": "JVP_HAS_KIND(o, JV_KIND_OBJECT)",
+      "after": "SVP_HAS_KIND(o, SV_KIND_OBJECT)"
+    },
+    {
+      "offset": "0x152188",
+      "before": "JVP_HAS_KIND(key, JV_KIND_STRING)",
+      "after": "SVP_HAS_KIND(key, SV_KIND_STRING)"
+    },
+    {
+      "offset": "0x1521b0",
+      "before": "JVP_HAS_KIND(j, JV_KIND_STRING)",
+      "after": "SVP_HAS_KIND(j, SV_KIND_STRING)"
+    },
+    {
+      "offset": "0x1521d0",
+      "before": "JVP_HAS_KIND(object, JV_KIND_OBJECT)",
+      "after": "SVP_HAS_KIND(object, SV_KIND_OBJECT)"
+    },
+    {
+      "offset": "0x1521f8",
+      "before": "JVP_HAS_KIND(j, JV_KIND_ARRAY)",
+      "after": "SVP_HAS_KIND(j, SV_KIND_ARRAY)"
+    },
+    {
+      "offset": "0x152248",
+      "before": "JVP_HAS_KIND(b, JV_KIND_STRING)",
+      "after": "SVP_HAS_KIND(b, SV_KIND_STRING)"
+    },
+    {
+      "offset": "0x152268",
+      "before": "slot == -1 || (slot >= 0 && slot < jvp_object_size(object))",
+      "after": "slot == -1 || (slot >= 0 && slot < svp_object_size(object))"
+    },
+    {
+      "offset": "0x1522a8",
+      "before": "JVP_HAS_KIND(n, JV_KIND_NUMBER)",
+      "after": "SVP_HAS_KIND(n, SV_KIND_NUMBER)"
+    },
+    {
+      "offset": "0x1522c8",
+      "before": "JVP_HAS_KIND(j, JV_KIND_NUMBER)",
+      "after": "SVP_HAS_KIND(j, SV_KIND_NUMBER)"
+    },
+    {
+      "offset": "0x1522e8",
+      "before": "JVP_HAS_KIND(a, JV_KIND_NUMBER)",
+      "after": "SVP_HAS_KIND(a, SV_KIND_NUMBER)"
+    },
+    {
+      "offset": "0x152308",
+      "before": "JVP_HAS_KIND(b, JV_KIND_NUMBER)",
+      "after": "SVP_HAS_KIND(b, SV_KIND_NUMBER)"
+    },
+    {
+      "offset": "0x152328",
+      "before": "jv_get_kind(jvp_object_get_slot(object,iter)->string) == JV_KIND_STRING",
+      "after": "sv_get_kind(svp_object_get_slot(object,iter)->string) == SV_KIND_STRING"
+    },
+    {
+      "offset": "0x152370",
+      "before": "JVP_HAS_KIND(s, JV_KIND_STRING)",
+      "after": "SVP_HAS_KIND(s, SV_KIND_STRING)"
+    },
+    {
+      "offset": "0x152390",
+      "before": "JVP_HAS_KIND(inv, JV_KIND_INVALID)",
+      "after": "SVP_HAS_KIND(inv, SV_KIND_INVALID)"
+    },
+    {
+      "offset": "0x1523b8",
+      "before": "i + jvp_array_offset(a) < array->length",
+      "after": "i + svp_array_offset(a) < array->length"
+    },
+    {
+      "offset": "0x152408",
+      "before": "s->alloc_length >= jvp_string_length(s)",
+      "after": "s->alloc_length >= svp_string_length(s)"
+    },
+    {
+      "offset": "0x152430",
+      "before": "jvp_refcnt_unshared(new_object.u.ptr)",
+      "after": "svp_refcnt_unshared(new_object.u.ptr)"
+    },
+    {
+      "offset": "0x152458",
+      "before": "jvp_refcnt_unshared(object.u.ptr)",
+      "after": "svp_refcnt_unshared(object.u.ptr)"
+    },
+    {
+      "offset": "0x152480",
+      "before": "!jvp_object_find_slot(new_object, slot->string, new_bucket)",
+      "after": "!svp_object_find_slot(new_object, slot->string, new_bucket)"
+    },
+    {
+      "offset": "0x1524c0",
+      "before": "!jvp_object_find_slot(*object, key, bucket)",
+      "after": "!svp_object_find_slot(*object, key, bucket)"
+    },
+    {
+      "offset": "0x1524f0",
+      "before": "JVP_HAS_KIND(a, JV_KIND_OBJECT)",
+      "after": "SVP_HAS_KIND(a, SV_KIND_OBJECT)"
+    },
+    {
+      "offset": "0x152510",
+      "before": "JVP_HAS_KIND(b, JV_KIND_OBJECT)",
+      "after": "SVP_HAS_KIND(b, SV_KIND_OBJECT)"
+    },
+    {
+      "offset": "0x152560",
+      "before": "JVP_HAS_KIND(b, JV_KIND_ARRAY)",
+      "after": "SVP_HAS_KIND(b, SV_KIND_ARRAY)"
+    },
+    {
+      "offset": "0x152580",
+      "before": "JVP_HAS_KIND(k, JV_KIND_STRING)",
+      "after": "SVP_HAS_KIND(k, SV_KIND_STRING)"
+    },
+    {
+      "offset": "0x1525a0",
+      "before": "JVP_HAS_KIND(sep, JV_KIND_STRING)",
+      "after": "SVP_HAS_KIND(sep, SV_KIND_STRING)"
+    },
+    {
+      "offset": "0x1525c8",
+      "before": "jq: error: cannot create thread specific key",
+      "after": "nc: error: cannot create thread specific key"
+    },
+    {
+      "offset": "0x1525f8",
+      "before": "jq: error: cannot set an exit handler",
+      "after": "nc: error: cannot set an exit handler"
+    },
+    {
+      "offset": "0x152620",
+      "before": "jq: error: cannot set thread specific data",
+      "after": "nc: error: cannot set thread specific data"
+    },
+    {
+      "offset": "0x1526a8",
+      "before": "jv_get_kind(objects) == JV_KIND_ARRAY",
+      "after": "sv_get_kind(objects) == SV_KIND_ARRAY"
+    },
+    {
+      "offset": "0x1526d0",
+      "before": "jv_get_kind(keys) == JV_KIND_ARRAY",
+      "after": "sv_get_kind(keys) == SV_KIND_ARRAY"
+    },
+    {
+      "offset": "0x1526f8",
+      "before": "jv_array_length(jv_copy(objects)) == jv_array_length(jv_copy(keys))",
+      "after": "sv_array_length(sv_copy(objects)) == sv_array_length(sv_copy(keys))"
+    },
+    {
+      "offset": "0x1527f8",
+      "before": "jv_array_length(jv_array_get(jv_copy(paths), i)) > start",
+      "after": "sv_array_length(sv_array_get(sv_copy(paths), i)) > start"
+    },
+    {
+      "offset": "0x1528d8",
+      "before": "0 && \"jv_keys passed something neither object nor array\"",
+      "after": "0 && \"sv_keys passed something neither object nor array\""
+    },
+    {
+      "offset": "0x152918",
+      "before": "0 && \"invalid kind passed to jv_cmp\"",
+      "after": "0 && \"invalid kind passed to sv_cmp\""
+    },
+    {
+      "offset": "0x152de0",
+      "before": "p->stackpos > 1 && jv_get_kind(p->stack[p->stackpos-2]) == JV_KIND_OBJECT",
+      "after": "p->stackpos > 1 && sv_get_kind(p->stack[p->stackpos-2]) == SV_KIND_OBJECT"
+    },
+    {
+      "offset": "0x152f98",
+      "before": "jv_get_kind(str) == JV_KIND_STRING",
+      "after": "sv_get_kind(str) == SV_KIND_STRING"
+    },
+    {
+      "offset": "0x1530f8",
+      "before": "jv_get_kind(search_path) == JV_KIND_ARRAY",
+      "after": "sv_get_kind(search_path) == SV_KIND_ARRAY"
+    },
+    {
+      "offset": "0x153128",
+      "before": "!jv_is_valid(as) || jv_get_kind(as) == JV_KIND_STRING",
+      "after": "!sv_is_valid(as) || sv_get_kind(as) == SV_KIND_STRING"
+    },
+    {
+      "offset": "0x153160",
+      "before": "jq: error: circular import of %s\n",
+      "after": "nc: error: circular import of %s\n"
+    },
+    {
+      "offset": "0x153188",
+      "before": "jq: error loading data file %s: %s\n",
+      "after": "nc: error loading data file %s: %s\n"
+    },
+    {
+      "offset": "0x1531b0",
+      "before": "jq: error: Top-level program not given (try \".\")",
+      "after": "nc: error: Top-level program not given (try \".\")"
+    },
+    {
+      "offset": "0x153218",
+      "before": "jq: error: Could not open file %s: %s\n",
+      "after": "nc: error: Could not open file %s: %s\n"
+    },
+    {
+      "offset": "0x153260",
+      "before": "jv_get_kind(path) == JV_KIND_STRING",
+      "after": "sv_get_kind(path) == SV_KIND_STRING"
+    },
+    {
+      "offset": "0x153288",
+      "before": "cb == jq_util_input_next_input_cb",
+      "after": "cb == nc_util_input_next_input_cb"
+    },
+    {
+      "offset": "0x153550",
+      "before": "jq: error: library should only have function definitions, not a main expression",
+      "after": "nc: error: library should only have function definitions, not a main expression"
+    },
+    {
+      "offset": "0x1536f8",
+      "before": "jv_get_kind(input) == JV_KIND_STRING",
+      "after": "sv_get_kind(input) == SV_KIND_STRING"
+    },
+    {
+      "offset": "0x153b88",
+      "before": "jv_get_kind(*vars) == JV_KIND_OBJECT",
+      "after": "sv_get_kind(*vars) == SV_KIND_OBJECT"
+    },
+    {
+      "offset": "0x153f38",
+      "before": "block_is_const(metadata) && block_const_kind(metadata) == JV_KIND_OBJECT",
+      "after": "block_is_const(metadata) && block_const_kind(metadata) == SV_KIND_OBJECT"
+    },
+    {
+      "offset": "0x153f88",
+      "before": "jv_get_kind(name) == JV_KIND_STRING",
+      "after": "sv_get_kind(name) == SV_KIND_STRING"
+    },
+    {
+      "offset": "0x153fe8",
+      "before": "jq: error: break used outside labeled control structure",
+      "after": "nc: error: break used outside labeled control structure"
+    },
+    {
+      "offset": "0x154020",
+      "before": "jq: error: %s/%d is not defined",
+      "after": "nc: error: %s/%d is not defined"
+    },
+    {
+      "offset": "0x158caf",
+      "before": "jq: error (at %s): %s\n",
+      "after": "nc: error (at %s): %s\n"
+    },
+    {
+      "offset": "0x158cd8",
+      "before": "jq_init",
+      "after": "nc_init"
+    },
+    {
+      "offset": "0x158dff",
+      "before": "jq-%s\n",
+      "after": "nc-%s\n"
+    },
+    {
+      "offset": "0x158e24",
+      "before": "jq: Unknown option -%c\n",
+      "after": "nc: Unknown option -%c\n"
+    },
+    {
+      "offset": "0x158e3c",
+      "before": "jq: Unknown option --%s\n",
+      "after": "nc: Unknown option --%s\n"
+    },
+    {
+      "offset": "0x158e5e",
+      "before": "JQ_COLORS",
+      "after": "NC_COLORS"
+    },
+    {
+      "offset": "0x158e68",
+      "before": "Failed to set $JQ_COLORS\n",
+      "after": "Failed to set $NC_COLORS\n"
+    },
+    {
+      "offset": "0x158e91",
+      "before": "$ORIGIN/../lib/jq",
+      "after": "$ORIGIN/../lib/nc"
+    },
+    {
+      "offset": "0x158ea3",
+      "before": "~/.jq",
+      "after": "~/.nc"
+    },
+    {
+      "offset": "0x158ea9",
+      "before": "JQ_LIBRARY_PATH",
+      "after": "NC_LIBRARY_PATH"
+    },
+    {
+      "offset": "0x158eb9",
+      "before": "jq: error: out of memory\n",
+      "after": "nc: error: out of memory\n"
+    },
+    {
+      "offset": "0x158ed3",
+      "before": "JQ_ORIGIN",
+      "after": "NC_ORIGIN"
+    },
+    {
+      "offset": "0x158ee9",
+      "before": "jq: %s\n",
+      "after": "nc: %s\n"
+    },
+    {
+      "offset": "0x158f16",
+      "before": "JQ_BUILD_CONFIGURATION",
+      "after": "NC_BUILD_CONFIGURATION"
+    },
+    {
+      "offset": "0x158f2d",
+      "before": "jq: parse error: %s\n",
+      "after": "nc: parse error: %s\n"
+    },
+    {
+      "offset": "0x158f42",
+      "before": "jq: ignoring parse error: %s\n",
+      "after": "nc: ignoring parse error: %s\n"
+    },
+    {
+      "offset": "0x158fbe",
+      "before": "jq->curr_frame",
+      "after": "nc->curr_frame"
+    },
+    {
+      "offset": "0x158fcd",
+      "before": "jv_is_valid(val)",
+      "after": "sv_is_valid(val)"
+    },
+    {
+      "offset": "0x158fec",
+      "before": "jq->stk_top == 0",
+      "after": "nc->stk_top == 0"
+    },
+    {
+      "offset": "0x158ffd",
+      "before": "jq->fork_top == 0",
+      "after": "nc->fork_top == 0"
+    },
+    {
+      "offset": "0x15900f",
+      "before": "jq->curr_frame == 0",
+      "after": "nc->curr_frame == 0"
+    },
+    {
+      "offset": "0x159034",
+      "before": "jq->err_cb",
+      "after": "nc->err_cb"
+    },
+    {
+      "offset": "0x159080",
+      "before": "jv_is_valid(v)",
+      "after": "sv_is_valid(v)"
+    },
+    {
+      "offset": "0x15908f",
+      "before": "__jq",
+      "after": "__nc"
+    },
+    {
+      "offset": "0x159094",
+      "before": "jq->subexp_nest > 0",
+      "after": "nc->subexp_nest > 0"
+    },
+    {
+      "offset": "0x1590ef",
+      "before": "jq: error: %s",
+      "after": "nc: error: %s"
+    },
+    {
+      "offset": "0x159109",
+      "before": "jq: %d compile %s",
+      "after": "nc: %d compile %s"
+    },
+    {
+      "offset": "0x15911b",
+      "before": "!jq->halted",
+      "after": "!nc->halted"
+    },
+    {
+      "offset": "0x159132",
+      "before": "src/jq_test.c",
+      "after": "src/nc_test.c"
+    },
+    {
+      "offset": "0x159140",
+      "before": "jv_get_refcnt(a) == 1",
+      "after": "sv_get_refcnt(a) == 1"
+    },
+    {
+      "offset": "0x159181",
+      "before": "jq: error",
+      "after": "nc: error"
+    },
+    {
+      "offset": "0x159220",
+      "before": "jv_is_valid(result)",
+      "after": "sv_is_valid(result)"
+    },
+    {
+      "offset": "0x159234",
+      "before": "jv_equal(result, expected)",
+      "after": "sv_equal(result, expected)"
+    },
+    {
+      "offset": "0x15924f",
+      "before": "!jv_is_valid(extra)",
+      "after": "!sv_is_valid(extra)"
+    },
+    {
+      "offset": "0x159277",
+      "before": "Test jq_state: %s\n",
+      "after": "Test nc_state: %s\n"
+    },
+    {
+      "offset": "0x159292",
+      "before": "jv_is_valid(parsed_input)",
+      "after": "sv_is_valid(parsed_input)"
+    },
+    {
+      "offset": "0x1592ac",
+      "before": "test_start_state(jq, prog)",
+      "after": "test_start_state(nc, prog)"
+    },
+    {
+      "offset": "0x1592c7",
+      "before": "jv_is_valid(parsed_input2)",
+      "after": "sv_is_valid(parsed_input2)"
+    },
+    {
+      "offset": "0x159371",
+      "before": "jv_number_value(r) == 2",
+      "after": "sv_number_value(r) == 2"
+    },
+    {
+      "offset": "0x159389",
+      "before": "!jv_is_valid(r)",
+      "after": "!sv_is_valid(r)"
+    },
+    {
+      "offset": "0x15939f",
+      "before": "jv_number_value(r) == 10",
+      "after": "sv_number_value(r) == 10"
+    },
+    {
+      "offset": "0x1593c0",
+      "before": "jv_number_value(r) == 107",
+      "after": "sv_number_value(r) == 107"
+    },
+    {
+      "offset": "0x1593e0",
+      "before": "jv_number_value(r) == 9",
+      "after": "sv_number_value(r) == 9"
+    },
+    {
+      "offset": "0x1593f8",
+      "before": "Test jq exhaust and reuse",
+      "after": "Test nc exhaust and reuse"
+    },
+    {
+      "offset": "0x159412",
+      "before": "jv_number_value(r) == i",
+      "after": "sv_number_value(r) == i"
+    },
+    {
+      "offset": "0x159432",
+      "before": "jv_number_value(r) == 20",
+      "after": "sv_number_value(r) == 20"
+    },
+    {
+      "offset": "0x159450",
+      "before": "jv_number_value(r) == 99",
+      "after": "sv_number_value(r) == 99"
+    },
+    {
+      "offset": "0x15948e",
+      "before": "src/jv.c",
+      "after": "src/sv.c"
+    },
+    {
+      "offset": "0x159597",
+      "before": "src/jv_alloc.c",
+      "after": "src/sv_alloc.c"
+    },
+    {
+      "offset": "0x1595b9",
+      "before": "src/jv_aux.c",
+      "after": "src/sv_aux.c"
+    },
+    {
+      "offset": "0x1595ff",
+      "before": "jv_is_valid(t)",
+      "after": "sv_is_valid(t)"
+    },
+    {
+      "offset": "0x15962b",
+      "before": "jv_is_valid(k)",
+      "after": "sv_is_valid(k)"
+    },
+    {
+      "offset": "0x159699",
+      "before": "src/jv_parse.c",
+      "after": "src/sv_parse.c"
+    },
+    {
+      "offset": "0x15982e",
+      "before": "!jv_is_valid(*out)",
+      "after": "!sv_is_valid(*out)"
+    },
+    {
+      "offset": "0x159841",
+      "before": "k == JV_KIND_NULL",
+      "after": "k == SV_KIND_NULL"
+    },
+    {
+      "offset": "0x159853",
+      "before": "!jv_is_valid(p->next)",
+      "after": "!sv_is_valid(p->next)"
+    },
+    {
+      "offset": "0x1598cd",
+      "before": "src/jv_print.c",
+      "after": "src/sv_print.c"
+    },
+    {
+      "offset": "0x15996c",
+      "before": "src/jv_unicode.c",
+      "after": "src/sv_unicode.c"
+    },
+    {
+      "offset": "0x1599cd",
+      "before": "jq/main",
+      "after": "nc/main"
+    },
+    {
+      "offset": "0x159a2c",
+      "before": "jq: error: %s\n",
+      "after": "nc: error: %s\n"
+    },
+    {
+      "offset": "0x159acf",
+      "before": "!jv_is_valid(state->slurped)",
+      "after": "!sv_is_valid(state->slurped)"
+    },
+    {
+      "offset": "0x15a611",
+      "before": "get_jq_origin",
+      "after": "get_nc_origin"
+    },
+    {
+      "offset": "0x15a7e2",
+      "before": "TAIL_CALL_JQ",
+      "after": "TAIL_CALL_NC"
+    },
+    {
+      "offset": "0x15a948",
+      "before": "jq: error: $%s is not defined",
+      "after": "nc: error: $%s is not defined"
+    },
+    {
+      "offset": "0x15a995",
+      "before": "curr->op == CALL_JQ",
+      "after": "curr->op == CALL_NC"
+    },
+    {
+      "offset": "0x15d798",
+      "before": "jq_halt",
+      "after": "nc_halt"
+    },
+    {
+      "offset": "0x15d7a0",
+      "before": "jq_set_attrs",
+      "after": "nc_set_attrs"
+    },
+    {
+      "offset": "0x15d7c0",
+      "before": "jq_compile_args",
+      "after": "nc_compile_args"
+    },
+    {
+      "offset": "0x15d7e0",
+      "before": "jq_reset",
+      "after": "nc_reset"
+    },
+    {
+      "offset": "0x15d820",
+      "before": "jq_next",
+      "after": "nc_next"
+    },
+    {
+      "offset": "0x15d830",
+      "before": "jq_report_error",
+      "after": "nc_report_error"
+    },
+    {
+      "offset": "0x15ee20",
+      "before": "run_jq_pthread_tests",
+      "after": "run_nc_pthread_tests"
+    },
+    {
+      "offset": "0x15ee40",
+      "before": "run_jq_exhaust_and_reuse_tests",
+      "after": "run_nc_exhaust_and_reuse_tests"
+    },
+    {
+      "offset": "0x15ee60",
+      "before": "run_jq_recompile_tests",
+      "after": "run_nc_recompile_tests"
+    },
+    {
+      "offset": "0x15eea0",
+      "before": "run_jq_compile_args_tests",
+      "after": "run_nc_compile_args_tests"
+    },
+    {
+      "offset": "0x15eec0",
+      "before": "test_jq_start_resets_state",
+      "after": "test_nc_start_resets_state"
+    },
+    {
+      "offset": "0x15eee0",
+      "before": "run_jq_tests",
+      "after": "run_nc_tests"
+    },
+    {
+      "offset": "0x15eef0",
+      "before": "jv_test",
+      "after": "sv_test"
+    },
+    {
+      "offset": "0x15ef40",
+      "before": "jv_object_iter_key",
+      "after": "sv_object_iter_key"
+    },
+    {
+      "offset": "0x15ef60",
+      "before": "jv_object_iter_next",
+      "after": "sv_object_iter_next"
+    },
+    {
+      "offset": "0x15ef78",
+      "before": "jv_object_iter",
+      "after": "sv_object_iter"
+    },
+    {
+      "offset": "0x15ef90",
+      "before": "jvp_object_merge_recursive",
+      "after": "svp_object_merge_recursive"
+    },
+    {
+      "offset": "0x15efb0",
+      "before": "jv_object_merge",
+      "after": "sv_object_merge"
+    },
+    {
+      "offset": "0x15efc0",
+      "before": "jv_object_length",
+      "after": "sv_object_length"
+    },
+    {
+      "offset": "0x15efe0",
+      "before": "jv_object_delete",
+      "after": "sv_object_delete"
+    },
+    {
+      "offset": "0x15f000",
+      "before": "jvp_object_rehash",
+      "after": "svp_object_rehash"
+    },
+    {
+      "offset": "0x15f020",
+      "before": "jvp_object_unshare",
+      "after": "svp_object_unshare"
+    },
+    {
+      "offset": "0x15f040",
+      "before": "jvp_object_write",
+      "after": "svp_object_write"
+    },
+    {
+      "offset": "0x15f058",
+      "before": "jv_object_set",
+      "after": "sv_object_set"
+    },
+    {
+      "offset": "0x15f068",
+      "before": "jv_object_has",
+      "after": "sv_object_has"
+    },
+    {
+      "offset": "0x15f080",
+      "before": "jvp_string_equal",
+      "after": "svp_string_equal"
+    },
+    {
+      "offset": "0x15f0a0",
+      "before": "jvp_object_size",
+      "after": "svp_object_size"
+    },
+    {
+      "offset": "0x15f0b0",
+      "before": "jvp_object_get_slot",
+      "after": "svp_object_get_slot"
+    },
+    {
+      "offset": "0x15f0c8",
+      "before": "jvp_object_ptr",
+      "after": "svp_object_ptr"
+    },
+    {
+      "offset": "0x15f0e0",
+      "before": "jvp_object_read",
+      "after": "svp_object_read"
+    },
+    {
+      "offset": "0x15f0f0",
+      "before": "jv_object_get",
+      "after": "sv_object_get"
+    },
+    {
+      "offset": "0x15f100",
+      "before": "jvp_object_new",
+      "after": "svp_object_new"
+    },
+    {
+      "offset": "0x15f110",
+      "before": "jv_string_slice",
+      "after": "sv_string_slice"
+    },
+    {
+      "offset": "0x15f120",
+      "before": "jv_string_value",
+      "after": "sv_string_value"
+    },
+    {
+      "offset": "0x15f130",
+      "before": "jv_string_hash",
+      "after": "sv_string_hash"
+    },
+    {
+      "offset": "0x15f140",
+      "before": "jv_string_implode",
+      "after": "sv_string_implode"
+    },
+    {
+      "offset": "0x15f160",
+      "before": "jv_string_explode",
+      "after": "sv_string_explode"
+    },
+    {
+      "offset": "0x15f180",
+      "before": "jv_string_split",
+      "after": "sv_string_split"
+    },
+    {
+      "offset": "0x15f190",
+      "before": "jvp_string_remaining_space",
+      "after": "svp_string_remaining_space"
+    },
+    {
+      "offset": "0x15f1b0",
+      "before": "jv_string_repeat",
+      "after": "sv_string_repeat"
+    },
+    {
+      "offset": "0x15f1d0",
+      "before": "jv_string_indexes",
+      "after": "sv_string_indexes"
+    },
+    {
+      "offset": "0x15f1f0",
+      "before": "jv_string_length_codepoints",
+      "after": "sv_string_length_codepoints"
+    },
+    {
+      "offset": "0x15f210",
+      "before": "jvp_string_ptr",
+      "after": "svp_string_ptr"
+    },
+    {
+      "offset": "0x15f220",
+      "before": "jv_string_length_bytes",
+      "after": "sv_string_length_bytes"
+    },
+    {
+      "offset": "0x15f240",
+      "before": "jvp_string_copy_replace_bad",
+      "after": "svp_string_copy_replace_bad"
+    },
+    {
+      "offset": "0x15f260",
+      "before": "jvp_array_slice",
+      "after": "svp_array_slice"
+    },
+    {
+      "offset": "0x15f270",
+      "before": "jv_array_slice",
+      "after": "sv_array_slice"
+    },
+    {
+      "offset": "0x15f280",
+      "before": "jv_array_concat",
+      "after": "sv_array_concat"
+    },
+    {
+      "offset": "0x15f290",
+      "before": "jvp_refcnt_unshared",
+      "after": "svp_refcnt_unshared"
+    },
+    {
+      "offset": "0x15f2a8",
+      "before": "jv_array_set",
+      "after": "sv_array_set"
+    },
+    {
+      "offset": "0x15f2b8",
+      "before": "jvp_array_read",
+      "after": "svp_array_read"
+    },
+    {
+      "offset": "0x15f2c8",
+      "before": "jv_array_get",
+      "after": "sv_array_get"
+    },
+    {
+      "offset": "0x15f2e0",
+      "before": "jvp_array_length",
+      "after": "svp_array_length"
+    },
+    {
+      "offset": "0x15f300",
+      "before": "jv_array_length",
+      "after": "sv_array_length"
+    },
+    {
+      "offset": "0x15f310",
+      "before": "jvp_number_cmp",
+      "after": "svp_number_cmp"
+    },
+    {
+      "offset": "0x15f320",
+      "before": "jv_number_negate",
+      "after": "sv_number_negate"
+    },
+    {
+      "offset": "0x15f338",
+      "before": "jv_number_abs",
+      "after": "sv_number_abs"
+    },
+    {
+      "offset": "0x15f350",
+      "before": "jvp_number_is_nan",
+      "after": "svp_number_is_nan"
+    },
+    {
+      "offset": "0x15f370",
+      "before": "jv_number_value",
+      "after": "sv_number_value"
+    },
+    {
+      "offset": "0x15f380",
+      "before": "jv_number_get_literal",
+      "after": "sv_number_get_literal"
+    },
+    {
+      "offset": "0x15f3a0",
+      "before": "jv_number_has_literal",
+      "after": "sv_number_has_literal"
+    },
+    {
+      "offset": "0x15f3c0",
+      "before": "jv_invalid_has_msg",
+      "after": "sv_invalid_has_msg"
+    },
+    {
+      "offset": "0x15f3e0",
+      "before": "jv_invalid_get_msg",
+      "after": "sv_invalid_get_msg"
+    },
+    {
+      "offset": "0x15f3f8",
+      "before": "jv_kind_name",
+      "after": "sv_kind_name"
+    },
+    {
+      "offset": "0x15f460",
+      "before": "jv_mem_calloc_unguarded",
+      "after": "sv_mem_calloc_unguarded"
+    },
+    {
+      "offset": "0x15f478",
+      "before": "jv_mem_calloc",
+      "after": "sv_mem_calloc"
+    },
+    {
+      "offset": "0x15f4b0",
+      "before": "jv_unique",
+      "after": "sv_unique"
+    },
+    {
+      "offset": "0x15f4c0",
+      "before": "jv_group",
+      "after": "sv_group"
+    },
+    {
+      "offset": "0x15f4e0",
+      "before": "jv_sort",
+      "after": "sv_sort"
+    },
+    {
+      "offset": "0x15f4e8",
+      "before": "jvp_cmp",
+      "after": "svp_cmp"
+    },
+    {
+      "offset": "0x15f4f0",
+      "before": "jv_keys",
+      "after": "sv_keys"
+    },
+    {
+      "offset": "0x15f4f8",
+      "before": "jv_dels",
+      "after": "sv_dels"
+    },
+    {
+      "offset": "0x15f510",
+      "before": "jv_has",
+      "after": "sv_has"
+    },
+    {
+      "offset": "0x15f517",
+      "before": "jv_set",
+      "after": "sv_set"
+    },
+    {
+      "offset": "0x15f728",
+      "before": "jv_parser_next",
+      "after": "sv_parser_next"
+    },
+    {
+      "offset": "0x15f740",
+      "before": "jv_parser_set_buf",
+      "after": "sv_parser_set_buf"
+    },
+    {
+      "offset": "0x15f7e0",
+      "before": "jv_dump_string_trunc",
+      "after": "sv_dump_string_trunc"
+    },
+    {
+      "offset": "0x15f800",
+      "before": "jvp_dump_string",
+      "after": "svp_dump_string"
+    },
+    {
+      "offset": "0x15f810",
+      "before": "jv_dump_term",
+      "after": "sv_dump_term"
+    },
+    {
+      "offset": "0x15f820",
+      "before": "jvp_utf8_encode",
+      "after": "svp_utf8_encode"
+    },
+    {
+      "offset": "0x15f830",
+      "before": "jvp_utf8_next",
+      "after": "svp_utf8_next"
+    },
+    {
+      "offset": "0x15f840",
+      "before": "jvp_utf8_backtrack",
+      "after": "svp_utf8_backtrack"
+    },
+    {
+      "offset": "0x15fb00",
+      "before": "jq_util_input_get_position",
+      "after": "nc_util_input_get_position"
+    },
+    {
+      "offset": "0x15fb20",
+      "before": "jq_util_input_set_parser",
+      "after": "nc_util_input_set_parser"
+    },
+    {
+      "offset": "0x160150",
+      "before": "jq_parse_library",
+      "after": "nc_parse_library"
+    },
+    {
+      "offset": "0x1b071f",
+      "before": "?Ijv7",
+      "after": "?Isv7"
+    },
+    {
+      "offset": "0x1b2f71",
+      "before": "JV",
+      "after": "SV"
+    },
+    {
+      "offset": "0x1b74df",
+      "before": "?Ijv7",
+      "after": "?Isv7"
+    },
+    {
+      "offset": "0x1b9cf1",
+      "before": "JV",
+      "after": "SV"
+    },
+    {
+      "offset": "0x1bc0df",
+      "before": "?Ijv7",
+      "after": "?Isv7"
+    },
+    {
+      "offset": "0x1be8f1",
+      "before": "JV",
+      "after": "SV"
+    },
+    {
+      "offset": "0x1c0cdf",
+      "before": "?Ijv7",
+      "after": "?Isv7"
+    },
+    {
+      "offset": "0x1c34f1",
+      "before": "JV",
+      "after": "SV"
+    },
+    {
+      "offset": "0x1c6caa",
+      "before": "JQ",
+      "after": "NC"
+    },
+    {
+      "offset": "0x1cadff",
+      "before": "?Ijv7",
+      "after": "?Isv7"
+    },
+    {
+      "offset": "0x1d1eaa",
+      "before": "JQ",
+      "after": "NC"
+    },
+    {
+      "offset": "0x1d5fff",
+      "before": "?Ijv7",
+      "after": "?Isv7"
+    },
+    {
+      "offset": "0x1da88a",
+      "before": "JQ",
+      "after": "NC"
+    },
+    {
+      "offset": "0x1de9df",
+      "before": "?Ijv7",
+      "after": "?Isv7"
+    },
+    {
+      "offset": "0x1e1e9f",
+      "before": "?Ijv7",
+      "after": "?Isv7"
+    }
+  ]
+}

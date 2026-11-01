@@ -1,0 +1,26 @@
+{
+  "original_content_preserved_except_header_and_callee_patch": true,
+  "original_main_bytes_identical": 6985,
+  "jump_table_function_targets_verified": 10,
+  "only_main_symbol_retained": true,
+  "indirect_jump_verified": true,
+  "original_main_calls_patched_callee": true,
+  "invalid_port_cases_passed": 4,
+  "echo_cases": [
+    {
+      "echo_bytes": 13,
+      "passed": true
+    },
+    {
+      "echo_bytes": 21,
+      "passed": true
+    },
+    {
+      "echo_bytes": 131072,
+      "passed": true
+    }
+  ],
+  "duplicate_bind_error_passed": true,
+  "server_stopped_after_test": true,
+  "sha256": "54eb75cbddb6a9a8e313d847e819fde7808ad10e82f6f96229ab19b39329fea2"
+}

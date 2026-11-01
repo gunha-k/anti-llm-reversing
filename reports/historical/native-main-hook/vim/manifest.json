@@ -1,0 +1,78 @@
+{
+  "schema": "native-main-hook/v1",
+  "host": "vim",
+  "version": "9.1.0000",
+  "source_url": "https://codeload.github.com/vim/vim/tar.gz/refs/tags/v9.1.0000",
+  "archive_sha256": "8d2a74e358be9cf260174e15e2e29dba4773f2670718b5bf728db6f54b90e25d",
+  "binary": "<workspace>/output/native-main-hook/vim/vim",
+  "sha256": "1feff41571554d20f5caa99e71841516dce76f8a6abe7d5f2ce958fb1c4345a6",
+  "original_sha256": "1ffbf628f0df324f471f10000747e31c1b46b739e0866ae501cfee6e705de03e",
+  "original_version_output": [
+    "VIM - Vi IMproved 9.1 (2024 Jan 02, compiled Oct 13 2026 00:38:58)",
+    "Compiled by arag5@DESKTOP-UJG36SV",
+    "Huge version without GUI.  Features included (+) or not (-):"
+  ],
+  "main_arity": 2,
+  "macro": "NATIVE_MAIN_DISPATCH",
+  "call_path": [
+    "main",
+    "mch_early_init",
+    "native_hook_real_main",
+    "exit(payload_return_code)"
+  ],
+  "payloads": [
+    {
+      "path": "<workspace>/examples/main_hook/echo.c",
+      "sha256": "e5796652628053804dc0500f6228b952f55329678c4ec46e682a0abe17da36de"
+    }
+  ],
+  "compiler_flags": [
+    "-O0",
+    "-g3",
+    "-fno-inline",
+    "-fno-omit-frame-pointer",
+    "-fno-lto"
+  ],
+  "payload_cflags": [],
+  "payload_ldflags": [],
+  "verification": {
+    "first_main_call": "mch_early_init",
+    "transfer_calls": [
+      "native_hook_real_main",
+      "exit@plt"
+    ],
+    "no_exec_or_subprocess_in_transfer": true,
+    "original_public_symbols_preserved": true,
+    "original_public_symbol_count": 6358,
+    "final_public_symbol_count": 6361,
+    "host_markers": [
+      "do_cmdline",
+      "main_loop",
+      "mch_call_shell"
+    ],
+    "symtab_and_debug_info": true
+  },
+  "build_recipe": {
+    "cwd": "<workspace>/output/native-main-hook/vim/work/vim-9.1.0000/src",
+    "make": [
+      "make",
+      "-j2",
+      "LINK_AS_NEEDED=no",
+      "vim"
+    ],
+    "ldflags": "-L<workspace>/build/native-hosts/deps/usr/lib/x86_64-linux-gnu -Wl,--no-gc-sections",
+    "hook_build": [
+      "make",
+      "-j2",
+      "LINK_AS_NEEDED=no",
+      "LDFLAGS=-L<workspace>/build/native-hosts/deps/usr/lib/x86_64-linux-gnu -Wl,--no-gc-sections <workspace>/output/native-main-hook/vim/payload/program.o",
+      "vim"
+    ]
+  },
+  "limitations": [
+    "ELF/shared-library constructors still run before main",
+    "argv[0] and executable-relative resources refer to the combined file",
+    "relinking changes function addresses and main machine code",
+    "native C ABI only; input archives are included with --whole-archive"
+  ]
+}

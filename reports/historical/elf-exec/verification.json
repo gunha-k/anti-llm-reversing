@@ -1,0 +1,8 @@
+{
+  "sample": "curl-jq",
+  "original_program": "jq",
+  "stdout": "6",
+  "exit_code": 0,
+  "curl_symbols_identical": true,
+  "original_execution_matches": true
+}

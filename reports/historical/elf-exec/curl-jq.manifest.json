@@ -1,0 +1,56 @@
+{
+  "schema": "elf-exec-lab/v1",
+  "source": {
+    "format": "ELF64-x86-64",
+    "type": "ET_DYN",
+    "entry": "0x16e60",
+    "interpreter": "/lib64/ld-linux-x86-64.so.2",
+    "load_segments": 4,
+    "sections": 40,
+    "has_symtab": true,
+    "sha256": "e33f5bbef50c44488ab06636d8064654001f75220c7f438c278d08f9ef43f19b",
+    "bytes": 7281304,
+    "path": "<workspace>/output/curl-symbols/curl"
+  },
+  "result": {
+    "format": "ELF64-x86-64",
+    "type": "ET_DYN",
+    "entry": "0x1f42e0",
+    "interpreter": null,
+    "load_segments": 5,
+    "sections": 41,
+    "has_symtab": true,
+    "sha256": "96da8a74cf3486efe22b479c4e86fb2898c6faf14b4e330418e94af23c6b521c",
+    "bytes": 7286608,
+    "path": "<workspace>/output/elf-exec/curl-jq"
+  },
+  "behavior": {
+    "operation": "execve",
+    "argv0": "<workspace>/jq",
+    "remaining_arguments": "forwarded unchanged",
+    "environment_cwd_stdio_fds": "inherited",
+    "exit_status_and_signals": "execution target replaces the launcher process",
+    "original_host_entry_executed": false,
+    "host_interpreter_executed": false
+  },
+  "payload_sha256": "6d46f3e6e6a6dfabc43eb91f911185e1cb63b673032cdf9efe876eca83283f42",
+  "limitations": [
+    "execution target must remain at its recorded absolute path",
+    "process identity after execve is the actual execution target",
+    "original host build-id is retained; identify result by SHA-256"
+  ],
+  "execution_target": {
+    "path": "<workspace>/jq",
+    "sha256_at_build": "b1c22172dd303f3be49e935aa56aa48a8b7a46e0bc838b4997d3bb451495870f",
+    "storage": "external-original-file"
+  },
+  "verification": {
+    "passed": true,
+    "original_bytes_after_header_preserved": true,
+    "original_load_mappings_preserved": true,
+    "original_sections_preserved_except_name_table": true,
+    "source_sha256": "e33f5bbef50c44488ab06636d8064654001f75220c7f438c278d08f9ef43f19b",
+    "result_sha256": "96da8a74cf3486efe22b479c4e86fb2898c6faf14b4e330418e94af23c6b521c",
+    "execution_target_hash_matches": true
+  }
+}

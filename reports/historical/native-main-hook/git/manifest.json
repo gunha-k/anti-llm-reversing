@@ -1,0 +1,92 @@
+{
+  "schema": "native-main-hook/v1",
+  "host": "git",
+  "version": "2.50.1",
+  "source_url": "https://www.kernel.org/pub/software/scm/git/git-2.50.1.tar.xz",
+  "archive_sha256": "7e3e6c36decbd8f1eedd14d42db6674be03671c2204864befa2a41756c5c8fc4",
+  "binary": "<workspace>/output/native-main-hook/git/git",
+  "sha256": "dbfe4a9971c9205bbd96ee8b3a9c80a73769250c7192aa2880763016a37ec78a",
+  "original_sha256": "38c54b9e1f5d15a6139effd54028e946d978e963b43cd4f2482a46c3c01febbe",
+  "original_version_output": [
+    "git version 2.50.1"
+  ],
+  "main_arity": 2,
+  "macro": "NATIVE_MAIN_DISPATCH",
+  "call_path": [
+    "main",
+    "init_git",
+    "native_hook_real_main",
+    "exit(payload_return_code)"
+  ],
+  "payloads": [
+    {
+      "path": "<workspace>/examples/main_hook/echo.c",
+      "sha256": "e5796652628053804dc0500f6228b952f55329678c4ec46e682a0abe17da36de"
+    }
+  ],
+  "compiler_flags": [
+    "-O0",
+    "-g3",
+    "-fno-inline",
+    "-fno-omit-frame-pointer",
+    "-fno-lto"
+  ],
+  "payload_cflags": [],
+  "payload_ldflags": [],
+  "verification": {
+    "first_main_call": "init_git",
+    "transfer_calls": [
+      "native_hook_real_main",
+      "exit@plt"
+    ],
+    "no_exec_or_subprocess_in_transfer": true,
+    "original_public_symbols_preserved": true,
+    "original_public_symbol_count": 3202,
+    "final_public_symbol_count": 3205,
+    "host_markers": [
+      "cmd_main",
+      "cmd_log",
+      "cmd_commit",
+      "start_command"
+    ],
+    "symtab_and_debug_info": true
+  },
+  "build_recipe": {
+    "cwd": "<workspace>/output/native-main-hook/git/work/git-2.50.1",
+    "make": [
+      "make",
+      "-j2",
+      "V=1",
+      "NO_GETTEXT=YesPlease",
+      "NO_CURL=YesPlease",
+      "NO_OPENSSL=YesPlease",
+      "NO_EXPAT=YesPlease",
+      "NO_PERL=YesPlease",
+      "NO_TCLTK=YesPlease",
+      "CFLAGS=-O0 -g3 -fno-inline -fno-omit-frame-pointer -fno-lto",
+      "LDFLAGS=-Wl,--no-gc-sections",
+      "git"
+    ],
+    "ldflags": "-Wl,--no-gc-sections",
+    "hook_build": [
+      "make",
+      "-j2",
+      "V=1",
+      "NO_GETTEXT=YesPlease",
+      "NO_CURL=YesPlease",
+      "NO_OPENSSL=YesPlease",
+      "NO_EXPAT=YesPlease",
+      "NO_PERL=YesPlease",
+      "NO_TCLTK=YesPlease",
+      "CFLAGS=-O0 -g3 -fno-inline -fno-omit-frame-pointer -fno-lto",
+      "LDFLAGS=-Wl,--no-gc-sections <workspace>/output/native-main-hook/git/payload/program.o",
+      "git"
+    ]
+  },
+  "limitations": [
+    "ELF/shared-library constructors still run before main",
+    "argv[0] and executable-relative resources refer to the combined file",
+    "relinking changes function addresses and main machine code",
+    "native C ABI only; input archives are included with --whole-archive"
+  ]
+}

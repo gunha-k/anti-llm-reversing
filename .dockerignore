@@ -1,0 +1,14 @@
+.git
+.aws
+.codex
+.agents
+.env*
+build
+output
+jq
+**/__pycache__
+**/*.o
+**/*.a
+examples/standalone/note
+examples/standalone/minish
+examples/standalone/rle
