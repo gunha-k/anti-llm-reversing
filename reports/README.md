@@ -1,8 +1,7 @@
-# 검증 기록
+# Verification records
 
-`clean-container/`는 외부 입력을 새로 다운로드한 Ubuntu 컨테이너에서 수행한 재현 검증입니다.
+`clean-container/` records an earlier reproduction in a clean Ubuntu container. It is historical evidence, not the setup used by the current native workspace.
 
-`historical/`은 기존 로컬 실험의 JSON 보고서 사본입니다.
-워크스페이스 절대 경로만 `<workspace>`로 바꾸었으며 ELF 해시와 측정값은 원래 기록입니다.
-이는 현재 컴퓨터에서 다시 검증했다는 의미가 아닙니다.
-새 컴퓨터의 보고서는 `python3 scripts/reproduce.py all` 실행 시 `output/`에 생성됩니다.
+`historical/` contains JSON reports from earlier local experiments. Absolute workspace paths were replaced with `<workspace>`; ELF hashes and measurements retain their recorded values. These files do not claim that the current checkout was reverified.
+
+New reports are generated in `output/` by `python3 scripts/reproduce.py all`. The new layout uses `programs/`, `covers/`, and `tools/`; historical reports can still mention the old layout.

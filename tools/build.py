@@ -7,7 +7,7 @@ BUILD.mkdir(exist_ok=True); OUT.mkdir(exist_ok=True)
 def run(*args):
     return subprocess.check_output([str(x) for x in args], text=True)
 def align(n, a=4096): return (n+a-1)//a*a
-raw = (ROOT/'jq').read_bytes()
+raw = (ROOT/'programs/jq').read_bytes()
 assert raw[:6] == b'\x7fELF\x02\x01'
 h = list(struct.unpack_from('<16sHHIQQQIHHHHHH', raw))
 assert h[1:3] == [2,62], 'requires static x86-64 ET_EXEC'
@@ -19,7 +19,7 @@ oldstrings = sections[h[13]]
 names = raw[oldstrings[4]:oldstrings[4]+oldstrings[5]]
 def name_at(i): return names[i:names.index(b'\0',i)].decode()
 sec_names = [name_at(s[0]) for s in sections]
-functions = sorted(set((int(a,16),int(b,16)) for a,b in re.findall(r'FDE .*?pc=([0-9a-f]+)\.\.([0-9a-f]+)',run('readelf','--debug-dump=frames',ROOT/'jq'))))
+functions = sorted(set((int(a,16),int(b,16)) for a,b in re.findall(r'FDE .*?pc=([0-9a-f]+)\.\.([0-9a-f]+)',run('readelf','--debug-dump=frames',ROOT/'programs/jq'))))
 def section_at(addr):
     return next((i for i,s in enumerate(sections) if s[2]&2 and s[3]<=addr<s[3]+s[5]),0)
 max_end = max(p[3]+p[6] for p in ph if p[0]==1)
@@ -41,7 +41,7 @@ for variant, filename in [(1,'socket-client'),(2,'socket-server'),(3,'socket-rou
     socket_idx = None
     if variant >= 2:
         obj=BUILD/f'payload{variant}.o'; elf=BUILD/f'payload{variant}.elf'; binary=BUILD/f'payload{variant}.bin'
-        run('gcc','-c','-x','assembler-with-cpp',f'-DORIGINAL_ENTRY={h[4]}',*(['-DJUMP_TABLE'] if variant==3 else []), ROOT/'src/socket_payload.S','-o',obj)
+        run('gcc','-c','-x','assembler-with-cpp',f'-DORIGINAL_ENTRY={h[4]}',*(['-DJUMP_TABLE'] if variant==3 else []), ROOT/'tools/socket_payload.S','-o',obj)
         run('ld','-nostdlib',f'-Ttext={base:#x}','-e','main',obj,'-o',elf)
         run('objcopy','-O','binary','--only-section=.text',elf,binary)
         payload=binary.read_bytes()

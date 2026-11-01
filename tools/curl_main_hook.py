@@ -16,7 +16,7 @@ import tarfile
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_TREE = ROOT / 'build/curl-symbols/curl-8.22.0'
+DEFAULT_TREE = ROOT / 'covers/curl-symbols/curl-8.22.0'
 ENTRY = 'curl_hook_real_main'
 
 

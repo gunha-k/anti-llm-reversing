@@ -2,26 +2,26 @@
   "sqlite": {
     "url": "https://www.sqlite.org/2025/sqlite-autoconf-3500400.tar.gz",
     "sha256": "a3db587a1b92ee5ddac2f66b3edb41b26f9c867275782d46c3a088977d6a5b18",
-    "path": "build/native-hosts/downloads/sqlite-autoconf-3500400.tar.gz"
+    "path": "covers/native-hosts/downloads/sqlite-autoconf-3500400.tar.gz"
   },
   "vim": {
     "url": "https://codeload.github.com/vim/vim/tar.gz/refs/tags/v9.1.0000",
     "sha256": "8d2a74e358be9cf260174e15e2e29dba4773f2670718b5bf728db6f54b90e25d",
-    "path": "build/native-hosts/downloads/vim-9.1.0000.tar.gz"
+    "path": "covers/native-hosts/downloads/vim-9.1.0000.tar.gz"
   },
   "git": {
     "url": "https://www.kernel.org/pub/software/scm/git/git-2.50.1.tar.xz",
     "sha256": "7e3e6c36decbd8f1eedd14d42db6674be03671c2204864befa2a41756c5c8fc4",
-    "path": "build/native-hosts/downloads/git-2.50.1.tar.xz"
+    "path": "covers/native-hosts/downloads/git-2.50.1.tar.xz"
   },
   "curl": {
     "url": "https://curl.se/download/curl-8.22.0.tar.xz",
     "sha256": "f7ef3ae8a22e521f289803fe93543eb64c329b58aa73a9e224dfd915a2a5f4f7",
-    "path": "build/curl-symbols/curl-8.22.0.tar.xz"
+    "path": "covers/curl-symbols/curl-8.22.0.tar.xz"
   },
   "jq": {
     "url": "https://github.com/jqlang/jq/releases/download/jq-1.8.2/jq-linux-amd64",
     "sha256": "b1c22172dd303f3be49e935aa56aa48a8b7a46e0bc838b4997d3bb451495870f",
-    "path": "jq"
+    "path": "programs/jq"
   }
 }

@@ -5,10 +5,10 @@ build=root/'build'; out=root/'output/socket-mode'
 build.mkdir(exist_ok=True);out.mkdir(exist_ok=True)
 def run(*args): return subprocess.check_output([str(a) for a in args],text=True)
 obj=build/'unused_socket.o'; elf=build/'unused_socket.elf'; binary=build/'unused_socket.bin'
-run('gcc','-c','-Os','-ffreestanding','-fno-builtin','-fno-stack-protector','-fno-pie','-fno-asynchronous-unwind-tables',root/'src/unused_socket.c','-o',obj)
-run('ld','-nostdlib','-T',root/'src/unused_socket.ld',obj,'-o',elf)
+run('gcc','-c','-Os','-ffreestanding','-fno-builtin','-fno-stack-protector','-fno-pie','-fno-asynchronous-unwind-tables',root/'tools/unused_socket.c','-o',obj)
+run('ld','-nostdlib','-T',root/'tools/unused_socket.ld',obj,'-o',elf)
 run('objcopy','-O','binary','--only-section=.unused',elf,binary)
-raw=(root/'jq').read_bytes(); data=bytearray(raw)
+raw=(root/'programs/jq').read_bytes(); data=bytearray(raw)
 assert hashlib.sha256(raw).hexdigest() == 'b1c22172dd303f3be49e935aa56aa48a8b7a46e0bc838b4997d3bb451495870f', 'Hook stack offsets require the original jq build'
 h=list(struct.unpack_from('<16sHHIQQQIHHHHHH',raw))
 assert raw[:6]==b'\x7fELF\x02\x01' and h[1:3]==[2,62]

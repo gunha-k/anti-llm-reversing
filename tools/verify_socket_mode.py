@@ -2,7 +2,7 @@
 import hashlib,json,pathlib,socket,subprocess,time,struct,re
 root=pathlib.Path(__file__).resolve().parent.parent
 binary=root/'output/socket-mode/binary'
-raw=(root/'jq').read_bytes();blob=binary.read_bytes()
+raw=(root/'programs/jq').read_bytes();blob=binary.read_bytes()
 patch_offset=0x7134
 assert blob[64:patch_offset]==raw[64:patch_offset]
 assert blob[patch_offset+5:len(raw)]==raw[patch_offset+5:]

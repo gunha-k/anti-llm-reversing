@@ -10,7 +10,7 @@ import time
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'src'))
+sys.path.insert(0, str(ROOT / 'tools'))
 import elf_lab as lab
 
 
@@ -21,8 +21,8 @@ class ElfLabTests(unittest.TestCase):
         cls.addClassCleanup(cls.temporary.cleanup)
         cls.folder = Path(cls.temporary.name)
         cls.payload = lab.compile_echo(18080)
-        cls.hosts = {'jq-static': ROOT / 'jq',
-                     'curl-debug-pie': ROOT / 'output/curl-symbols/curl',
+        cls.hosts = {'jq-static': ROOT / 'programs/jq',
+                     'curl-debug-pie': ROOT / 'covers/bin/curl',
                      'ls-stripped-pie': Path('/usr/bin/ls')}
         source = cls.folder / 'host.c'
         source.write_text('#include <stdio.h>\nint main(void) { puts("original main"); return 37; }\n')
@@ -102,11 +102,11 @@ int main(int argc, char **argv) {
 
     def test_exec_jq_and_script(self):
         target = self.folder / 'curl-jq'
-        lab.build(self.hosts['curl-debug-pie'], target, payload_path=ROOT / 'jq')
+        lab.build(self.hosts['curl-debug-pie'], target, payload_path=ROOT / 'programs/jq')
         for args, data in [(['--version'], b''), (['.items | add'], b'{"items":[1,2,3]}'),
                            (['-e', '.'], b'false'), (['.'], b'{invalid'),
                            (['-r', '.name'], '{"name":"테스트"}'.encode())]:
-            original = subprocess.run([str(ROOT / 'jq'), *args], input=data,
+            original = subprocess.run([str(ROOT / 'programs/jq'), *args], input=data,
                                       capture_output=True, timeout=3)
             actual = subprocess.run([str(target), *args], input=data,
                                     capture_output=True, timeout=3)
@@ -220,13 +220,13 @@ int main(int argc, char **argv) {
         host = self.hosts['ls-stripped-pie']
         target = self.folder / 'path with spaces' / 'ls'
         before = hashlib.sha256(host.read_bytes()).hexdigest()
-        built = subprocess.run([sys.executable, str(ROOT / 'src/elf_lab.py'),
+        built = subprocess.run([sys.executable, str(ROOT / 'tools/elf_lab.py'),
                                 'build', str(host), '-o', str(target), '--port', '19090'],
                                capture_output=True, text=True)
         self.assertEqual(built.returncode, 0, built.stderr)
         report = json.loads(built.stdout)
         self.assertEqual(report['behavior']['default_port'], 19090)
-        check = subprocess.run([sys.executable, str(ROOT / 'src/elf_lab.py'),
+        check = subprocess.run([sys.executable, str(ROOT / 'tools/elf_lab.py'),
                                 'verify', str(host), str(target)], capture_output=True)
         self.assertEqual(check.returncode, 0, check.stderr)
         with self.assertRaisesRegex(ValueError, 'already exists'):
