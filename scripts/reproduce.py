@@ -65,7 +65,7 @@ def prepare_curl(jobs):
         '--without-libidn2', '--without-libssh2', '--without-nghttp2', '--without-brotli',
         '--without-zstd', cwd=tree, env=env)
     run('make', f'-j{jobs}', cwd=tree)
-    out = ROOT / 'output/curl-symbols'
+    out = ROOT / 'covers/bin'
     out.mkdir(parents=True, exist_ok=True)
     shutil.copy2(tree / 'src/curl', out / 'curl')
     shutil.copy2(tree / 'COPYING', out / 'COPYING')
@@ -79,7 +79,7 @@ def main():
                         help='development package root for Vim (default: system /usr)')
     args = parser.parse_args()
     if sys.version_info < (3, 12) or platform.system() != 'Linux' or platform.machine() != 'x86_64':
-        parser.error('Linux x86-64 and Python >=3.12 required; see Dockerfile')
+        parser.error('Linux x86-64 and Python >=3.12 required; see docs/reproduction.md')
     if args.jobs < 1:
         parser.error('--jobs must be positive')
     if not re.fullmatch(r'[A-Za-z0-9_./-]+', str(ROOT)):
@@ -93,31 +93,31 @@ def main():
     py = sys.executable
     target = args.target
     if target in ('standalone', 'all'):
-        run('make', '-C', 'examples/standalone', f'-j{args.jobs}')
+        run('make', '-C', 'programs/standalone', f'-j{args.jobs}')
         run(py, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_standalone.py', '-v')
     if target == 'fetch':
         for name in INPUTS:
             fetch(name)
     if target in ('curl', 'all'):
         prepare_curl(args.jobs)
-        run(py, 'src/curl_main_hook.py', '--payload', 'examples/main_hook/hello.c',
+        run(py, 'tools/curl_main_hook.py', '--payload', 'programs/main_hook/hello.c',
             '-o', 'output/curl-main-hook/hello')
         run(ROOT / 'output/curl-main-hook/hello/curl', 'reproduction-check')
-        run(py, 'src/curl_main_hook.py', '--payload', 'examples/main_hook/echo.c',
+        run(py, 'tools/curl_main_hook.py', '--payload', 'programs/main_hook/echo.c',
             '-o', 'output/curl-socket')
         run(py, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_curl_main_hook.py', '-v',
             env=dict(os.environ, ELF_LAB_NETWORK_TESTS='1'))
     if target in ('native', 'all'):
         for host in ('sqlite', 'vim', 'git'):
             fetch(host)
-            run(py, 'src/native_main_hook.py', '--host', host,
-                '--payload', 'examples/main_hook/echo.c', '--jobs', args.jobs,
+            run(py, 'tools/native_main_hook.py', '--host', host,
+                '--payload', 'programs/main_hook/echo.c', '--jobs', args.jobs,
                 '--deps', args.deps, '-o', f'output/native-main-hook/{host}')
-        run(py, 'src/verify_native_main_hook.py', '--network')
+        run(py, 'tools/verify_native_main_hook.py', '--network')
     if target in ('legacy', 'all'):
         fetch('jq')
         for script in ('build', 'verify', 'mask_socket_strings', 'build_socket_mode', 'verify_socket_mode'):
-            run(py, f'src/{script}.py')
+            run(py, f'tools/{script}.py')
     if target == 'all':
         run(py, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_elf_lab.py', '-v',
             env=dict(os.environ, ELF_LAB_NETWORK_TESTS='1'))

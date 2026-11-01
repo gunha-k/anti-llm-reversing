@@ -54,7 +54,7 @@ assert data[h[6]:h[6]+h[11]*h[12]] == raw[h[6]:h[6]+h[11]*h[12]]
 target.write_bytes(data)
 target.chmod(0o755)
 # Reuse the established behavior cases without executing the other verifier.
-module = ast.parse((ROOT/'src/verify.py').read_text())
+module = ast.parse((ROOT/'tools/verify.py').read_text())
 # cases includes an .encode() expression, so compile only that trusted assignment.
 assignment = next(n for n in module.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='cases' for t in n.targets))
 namespace = {}

@@ -15,7 +15,7 @@ import sys
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
-CACHE = ROOT / 'build/native-hosts'
+CACHE = ROOT / 'covers/native-hosts'
 ENTRY = 'native_hook_real_main'
 DEBUG = ['-O0', '-g3', '-fno-inline', '-fno-omit-frame-pointer', '-fno-lto']
 HOSTS = {
@@ -269,7 +269,7 @@ def verify_structure(host, original, final, out):
 
 
 def build(host, payloads, out, *, arity=2, cflags=(), ldflags=(), jobs=2,
-          downloads=CACHE / 'downloads', deps=CACHE / 'deps'):
+          downloads=CACHE / 'downloads', deps=Path('/')):
     out = Path(out).absolute()
     require(not out.exists() and not out.is_symlink(), 'output directory already exists')
     require(re.fullmatch(r'[A-Za-z0-9_./-]+', str(out)),
@@ -327,7 +327,7 @@ def main(argv=None):
     parser.add_argument('--payload-ldflag', action='append', default=[])
     parser.add_argument('--jobs', type=int, default=2)
     parser.add_argument('--downloads', type=Path, default=CACHE / 'downloads')
-    parser.add_argument('--deps', type=Path, default=CACHE / 'deps')
+    parser.add_argument('--deps', type=Path, default=Path('/'))
     args = parser.parse_args(argv)
     try:
         build(args.host, args.payload, args.output_dir, arity=args.main_arity,

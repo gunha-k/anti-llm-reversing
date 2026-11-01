@@ -60,7 +60,7 @@ def run_echo(binary, payload, *, terminate=False):
 
 def verify(base, network):
     reports = []
-    source = ROOT / 'examples/main_hook/echo.c'
+    source = ROOT / 'programs/main_hook/echo.c'
     with tempfile.TemporaryDirectory(prefix='native-echo-check-') as folder:
         direct = Path(folder) / 'original-echo'
         subprocess.run(['gcc', *DEBUG, str(source), '-o', str(direct)], check=True, capture_output=True)

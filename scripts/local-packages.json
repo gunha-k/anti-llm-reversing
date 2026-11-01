@@ -1,0 +1,92 @@
+[
+  {
+    "file": "cpp-13-x86-64-linux-gnu_13.3.0-6ubuntu2~24.04.1_amd64.deb",
+    "metadata": "Package: cpp-13-x86-64-linux-gnu\nVersion: 13.3.0-6ubuntu2~24.04.1\nArchitecture: amd64",
+    "sha256": "2ca48bf0c2d6465bc39322899715a85d934b4d7442dd5586a7bebbe3ce0f806b"
+  },
+  {
+    "file": "cpp-13_13.3.0-6ubuntu2~24.04.1_amd64.deb",
+    "metadata": "Package: cpp-13\nVersion: 13.3.0-6ubuntu2~24.04.1\nArchitecture: amd64",
+    "sha256": "c7535331fbb183c802c3bf4b6b210872dcc12d0421b3212b3c4b940f2c59ed3a"
+  },
+  {
+    "file": "gcc-13-x86-64-linux-gnu_13.3.0-6ubuntu2~24.04.1_amd64.deb",
+    "metadata": "Package: gcc-13-x86-64-linux-gnu\nVersion: 13.3.0-6ubuntu2~24.04.1\nArchitecture: amd64",
+    "sha256": "a134b0319a82d14581b3a14820d2832af4ec9778ed8b9b4ddaeecfb0555ec325"
+  },
+  {
+    "file": "gcc-13_13.3.0-6ubuntu2~24.04.1_amd64.deb",
+    "metadata": "Package: gcc-13\nVersion: 13.3.0-6ubuntu2~24.04.1\nArchitecture: amd64",
+    "sha256": "7438ff160b020a74970672189ecae25d0ca650de6d7f543f12a3134192cffbd9"
+  },
+  {
+    "file": "libc-dev-bin_2.39-0ubuntu8_amd64.deb",
+    "metadata": "Package: libc-dev-bin\nVersion: 2.39-0ubuntu8\nArchitecture: amd64",
+    "sha256": "e1d2c6e9e6a4fa06a48703f57e1fad6dd643625eb0a4dd700c156d3a31e7689f"
+  },
+  {
+    "file": "libc6-dev_2.39-0ubuntu8_amd64.deb",
+    "metadata": "Package: libc6-dev\nVersion: 2.39-0ubuntu8\nArchitecture: amd64",
+    "sha256": "1f03b79223d9cf1a6ed3a648f6942619dcb97b2884dba8fd12e262b6771e247a"
+  },
+  {
+    "file": "libgcc-13-dev_13.3.0-6ubuntu2~24.04.1_amd64.deb",
+    "metadata": "Package: libgcc-13-dev\nVersion: 13.3.0-6ubuntu2~24.04.1\nArchitecture: amd64",
+    "sha256": "cd689db2691edaa10f37329307292796bb599e722e0505c79e14caaa1fe9a93a"
+  },
+  {
+    "file": "libisl23_0.26-3build1.1_amd64.deb",
+    "metadata": "Package: libisl23\nVersion: 0.26-3build1.1\nArchitecture: amd64",
+    "sha256": "4e040926e50fb961fae9bf95660189d468336a4a17bc321872c434fc8f777e7f"
+  },
+  {
+    "file": "libmpc3_1.3.1-1build1.1_amd64.deb",
+    "metadata": "Package: libmpc3\nVersion: 1.3.1-1build1.1\nArchitecture: amd64",
+    "sha256": "cebe6098bb3d66fdacac9dc6fe406a651216d9c00f27c3f9c159d15d96cdf864"
+  },
+  {
+    "file": "libncurses-dev_6.4+20240113-1ubuntu2.2_amd64.deb",
+    "metadata": "Package: libncurses-dev\nVersion: 6.4+20240113-1ubuntu2.2\nArchitecture: amd64",
+    "sha256": "2c32ce182e90e6636ddb037ba2810cace9e1f076b13fac89034277d8ba943c38"
+  },
+  {
+    "file": "libpkgconf3_1.8.1-2build1_amd64.deb",
+    "metadata": "Package: libpkgconf3\nVersion: 1.8.1-2build1\nArchitecture: amd64",
+    "sha256": "fc3a57e8f931ec06cb7c51acc56878f1fec247ff02a7adcab26905c2faeb2792"
+  },
+  {
+    "file": "libssl-dev_3.0.13-0ubuntu3_amd64.deb",
+    "metadata": "Package: libssl-dev\nVersion: 3.0.13-0ubuntu3\nArchitecture: amd64",
+    "sha256": "7135fe0e6a78b15fe4e30660765b67887ae33b36a7902293c2d7fddc09e13397"
+  },
+  {
+    "file": "libstdc++-13-dev_13.3.0-6ubuntu2~24.04.1_amd64.deb",
+    "metadata": "Package: libstdc++-13-dev\nVersion: 13.3.0-6ubuntu2~24.04.1\nArchitecture: amd64",
+    "sha256": "ee5633e863e19c3381ed97842ce35ed32ede96a3d1ae4e94c051d3036fe21347"
+  },
+  {
+    "file": "linux-libc-dev_6.8.0-31.31_amd64.deb",
+    "metadata": "Package: linux-libc-dev\nVersion: 6.8.0-31.31\nArchitecture: amd64",
+    "sha256": "21c631ba4da3d38d92a133e28a8a14278e1e00174ed135a20661d1e532e05ca5"
+  },
+  {
+    "file": "make_4.3-4.1build2_amd64.deb",
+    "metadata": "Package: make\nVersion: 4.3-4.1build2\nArchitecture: amd64",
+    "sha256": "1fe6a815b56c7b6e9ce4086a363f09444bbd0a0d30e230c453d0b78e44b57a99"
+  },
+  {
+    "file": "pkgconf-bin_1.8.1-2build1_amd64.deb",
+    "metadata": "Package: pkgconf-bin\nVersion: 1.8.1-2build1\nArchitecture: amd64",
+    "sha256": "7a812f05ee1610154b433e2ad54f6e4163fcbb306b9fb31afe959afb2e5e1545"
+  },
+  {
+    "file": "pkgconf_1.8.1-2build1_amd64.deb",
+    "metadata": "Package: pkgconf\nVersion: 1.8.1-2build1\nArchitecture: amd64",
+    "sha256": "834a58031069d97d7cfb8b2f5bfd5effc69cecf7f30cc362071875f1f8dc1828"
+  },
+  {
+    "file": "zlib1g-dev_1%3a1.3.dfsg-3.1ubuntu2_amd64.deb",
+    "metadata": "Package: zlib1g-dev\nVersion: 1:1.3.dfsg-3.1ubuntu2\nArchitecture: amd64",
+    "sha256": "7360405fbf49e35dca2f7a4ebeac7d4fe5fe3b2db99adac70e11e104f53b2642"
+  }
+]

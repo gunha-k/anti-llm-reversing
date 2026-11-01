@@ -4,7 +4,7 @@ import subprocess
 import tempfile
 import unittest
 
-APPS = Path(__file__).resolve().parents[1] / 'examples/standalone'
+APPS = Path(__file__).resolve().parents[1] / 'programs/standalone'
 
 
 class StandaloneTests(unittest.TestCase):

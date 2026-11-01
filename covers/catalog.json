@@ -1,0 +1,29 @@
+{
+  "downloads_manifest": "scripts/downloads.json",
+  "projects": {
+    "curl": {
+      "version": "8.22.0",
+      "role": "cover",
+      "archive": "covers/curl-symbols/curl-8.22.0.tar.xz",
+      "source_tree": "covers/curl-symbols/curl-8.22.0"
+    },
+    "sqlite": {
+      "version": "3.50.4",
+      "role": "cover",
+      "archive": "covers/native-hosts/downloads/sqlite-autoconf-3500400.tar.gz",
+      "source_tree": "output/native-main-hook/sqlite/work"
+    },
+    "vim": {
+      "version": "9.1.0000",
+      "role": "cover",
+      "archive": "covers/native-hosts/downloads/vim-9.1.0000.tar.gz",
+      "source_tree": "output/native-main-hook/vim/work"
+    },
+    "git": {
+      "version": "2.50.1",
+      "role": "cover",
+      "archive": "covers/native-hosts/downloads/git-2.50.1.tar.xz",
+      "source_tree": "output/native-main-hook/git/work"
+    }
+  }
+}

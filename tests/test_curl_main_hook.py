@@ -9,7 +9,7 @@ import time
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'src'))
+sys.path.insert(0, str(ROOT / 'tools'))
 import curl_main_hook as hook
 
 
@@ -19,7 +19,7 @@ class CurlMainHookTests(unittest.TestCase):
         cls.temp = tempfile.TemporaryDirectory(prefix='curl-main-tests-')
         cls.addClassCleanup(cls.temp.cleanup)
         cls.folder = Path(cls.temp.name)
-        cls.old_hash = hook.sha(ROOT / 'src/elf_lab.py')
+        cls.old_hash = hook.sha(ROOT / 'tools/elf_lab.py')
         cls.source = cls.folder / 'program with spaces.c'
         cls.source.write_text(r'''
 #include <stdio.h>
@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
             cls.reports[kind] = hook.build(hook.DEFAULT_TREE, [source], out)
             cls.variants[kind] = out / 'curl'
         cls.echo_original = cls.folder / 'echo-original'
-        echo_source = ROOT / 'examples/main_hook/echo.c'
+        echo_source = ROOT / 'programs/main_hook/echo.c'
         hook.command(['gcc', echo_source, '-o', cls.echo_original])
         hook.build(hook.DEFAULT_TREE, [echo_source], cls.folder / 'echo')
         cls.echo_hooked = cls.folder / 'echo/curl'
@@ -112,7 +112,7 @@ int main(int argc, char **argv) {
         self.assertIn(os.fsencode('exe=' + str(binary) + '\n'), stdout)
 
     def test_first_call_macro_and_symbols(self):
-        original_names = {n for n, _ in hook.symbols(ROOT / 'output/curl-symbols/curl')}
+        original_names = {n for n, _ in hook.symbols(ROOT / 'covers/bin/curl')}
         names = {n for n, _ in hook.symbols(self.variants['source'])}
         self.assertLessEqual(original_names, names)
         for kind, report in self.reports.items():
@@ -123,7 +123,7 @@ int main(int argc, char **argv) {
         generated = self.variants['source'].parent / 'sources'
         self.assertIn('#define CURL_DISPATCH_REAL_MAIN',
                       (generated / 'curl_main_dispatch.h').read_text())
-        self.assertEqual(hook.sha(ROOT / 'src/elf_lab.py'), self.old_hash)
+        self.assertEqual(hook.sha(ROOT / 'tools/elf_lab.py'), self.old_hash)
         sections = hook.command(['readelf', '-SW', self.variants['source']])
         self.assertIn('.debug_info', sections)
         self.assertIn('.symtab', sections)
@@ -150,7 +150,7 @@ int main(int argc, char **argv) {
         direct = self.folder / 'multi-original'
         hook.command(['gcc', '-DTEST_FEATURE=11', main, helper, '-lm', '-o', direct])
         out = self.folder / 'multi'
-        hook.command([sys.executable, ROOT / 'src/curl_main_hook.py', '--payload', main, helper,
+        hook.command([sys.executable, ROOT / 'tools/curl_main_hook.py', '--payload', main, helper,
                       '--payload-cflag=-DTEST_FEATURE=11', '--payload-ldflag=-lm', '-o', out])
         self.assertEqual(self.invoke(out / 'curl', ['49']), self.invoke(direct, ['49']))
         self.assertEqual(self.invoke(out / 'curl', ['49'])[0], 18)

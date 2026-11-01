@@ -1,0 +1,26 @@
+{
+  "upstream_commit": "9cadd5aa7f0c56fb8315048018b1c7e64463cc8d",
+  "container": false,
+  "layout": {
+    "programs": "programs/",
+    "covers": "covers/",
+    "tools": "tools/",
+    "results": "output/"
+  },
+  "command": "python3 scripts/reproduce.py all --jobs 2 --deps \"$PWD/.local/sysroot\"",
+  "exit_code": 0,
+  "tests": {
+    "standalone": 3,
+    "curl_main_hook": 9,
+    "elf_lab": 14
+  },
+  "native_hosts": [
+    "sqlite",
+    "vim",
+    "git"
+  ],
+  "native_network": "passed",
+  "jq_variant_cases_each": 21,
+  "string_variant_cases": 23,
+  "log": ".local/restructure-build.log"
+}

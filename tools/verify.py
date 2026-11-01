@@ -5,14 +5,14 @@ cases=[(['--version'],b''),(['--help'],b''),(['.'],b'{"a":[1,true,null,"hello"]}
 def invoke(path,args,stdin):
     p=subprocess.run([str(path),*args],input=stdin,capture_output=True,timeout=10)
     return p.returncode,p.stdout,p.stderr
-raw=(root/'jq').read_bytes()
+raw=(root/'programs/jq').read_bytes()
 h=struct.unpack_from('<16sHHIQQQIHHHHHH',raw)
 ph=[struct.unpack_from('<IIQQQQQQ',raw,h[5]+i*56) for i in range(h[10])]
 results=[]
 for name in ['socket-client','socket-server','socket-router']:
     binary=root/'output'/name
     for args,stdin in cases:
-        expected=invoke(root/'jq',args,stdin); actual=invoke(binary,args,stdin)
+        expected=invoke(root/'programs/jq',args,stdin); actual=invoke(binary,args,stdin)
         assert actual==expected,(name,args,expected,actual)
     blob=binary.read_bytes()
     # ELF header changes intentionally; every other original loadable byte is identical.
